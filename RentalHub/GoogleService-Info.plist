@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>87480407370-qrs5kpidi2iao9rhgfjobiv457tkhsek.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.87480407370-qrs5kpidi2iao9rhgfjobiv457tkhsek</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDEYfc8GFgt2Ey21gPj-6xyF0KN334vd6s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>87480407370</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>martech.RentalHub</string>
+	<key>PROJECT_ID</key>
+	<string>rentalhub-82cfc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>rentalhub-82cfc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:87480407370:ios:823c429470dca67a8fddb3</string>
+	<key>DATABASE_URL</key>
+	<string>https://rentalhub-82cfc.firebaseio.com</string>
+</dict>
+</plist>

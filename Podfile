@@ -11,6 +11,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Analytics'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
+pod 'Firebase/Auth'
 
   target 'RentalHubTests' do
     inherit! :search_paths

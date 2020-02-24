@@ -92,6 +92,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    //error message display
     func showError(_ message : String) {
         errorLabel.text = message
         errorLabel.alpha = 1

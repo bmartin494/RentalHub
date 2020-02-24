@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
 
     @IBAction func loginTapped(_ sender: Any) {
         
-        //validate the text fields
+        //TODO validate the text fields
         
         //signing in the user
         signIn()

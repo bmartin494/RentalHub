@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		56EDD4BCCB2007C053FA0CFC /* Pods_RentalHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDC3A550FE90332C0F70882 /* Pods_RentalHub.framework */; };
-		71CEA60AB316BB8A0592CBDF /* Pods_RentalHubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8051D37F0CF37962F2769F1 /* Pods_RentalHubTests.framework */; };
 		8F06121423C4D61B00C44843 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06121323C4D61B00C44843 /* AppDelegate.swift */; };
 		8F06121623C4D61B00C44843 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06121523C4D61B00C44843 /* SceneDelegate.swift */; };
 		8F06121823C4D61B00C44843 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06121723C4D61B00C44843 /* ViewController.swift */; };
@@ -18,10 +16,13 @@
 		8F06122B23C4D61C00C44843 /* RentalHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06122A23C4D61C00C44843 /* RentalHubTests.swift */; };
 		8F06123623C4D67400C44843 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F06123523C4D67400C44843 /* GoogleService-Info.plist */; };
 		8F06123723C4D67400C44843 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F06123523C4D67400C44843 /* GoogleService-Info.plist */; };
-		8F7DC30423C5E40700487686 /* RetriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7DC30323C5E40700487686 /* RetriveViewController.swift */; };
+		8F37A78E24041864007EFA33 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F37A78D24041864007EFA33 /* Utilities.swift */; };
+		8F6E81772404276F002D93AE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6E81762404276F002D93AE /* Constants.swift */; };
 		8F9D18AB23FBFB850071FC15 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D18AA23FBFB850071FC15 /* SignUpViewController.swift */; };
 		8F9D18AD23FBFB900071FC15 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D18AC23FBFB900071FC15 /* LoginViewController.swift */; };
 		8F9D18AF23FBFB9C0071FC15 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D18AE23FBFB9C0071FC15 /* HomeViewController.swift */; };
+		A57CDD47F5C4D02082E99D60 /* Pods_RentalHubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC6AE6D7143FF0DCF82A287 /* Pods_RentalHubTests.framework */; };
+		AB26410C2095ACA9C9837839 /* Pods_RentalHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0A70DB1141B68A0647AE5C /* Pods_RentalHub.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03B6D611C183711E7A3FD539 /* Pods-RentalHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHub.debug.xcconfig"; path = "Target Support Files/Pods-RentalHub/Pods-RentalHub.debug.xcconfig"; sourceTree = "<group>"; };
-		21E8F540AB67B5DAA768F3D6 /* Pods-RentalHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHub.release.xcconfig"; path = "Target Support Files/Pods-RentalHub/Pods-RentalHub.release.xcconfig"; sourceTree = "<group>"; };
-		55611C82D52DE8C8F7A3E777 /* Pods-RentalHubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHubTests.release.xcconfig"; path = "Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests.release.xcconfig"; sourceTree = "<group>"; };
-		5BDC3A550FE90332C0F70882 /* Pods_RentalHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AC6AE6D7143FF0DCF82A287 /* Pods_RentalHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C0A70DB1141B68A0647AE5C /* Pods_RentalHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20DB48F5EE78C63FBCDBC73C /* Pods-RentalHubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHubTests.release.xcconfig"; path = "Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests.release.xcconfig"; sourceTree = "<group>"; };
+		2BC0E21F6885AC9E14334C6B /* Pods-RentalHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHub.debug.xcconfig"; path = "Target Support Files/Pods-RentalHub/Pods-RentalHub.debug.xcconfig"; sourceTree = "<group>"; };
 		8F06121023C4D61B00C44843 /* RentalHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RentalHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F06121323C4D61B00C44843 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F06121523C4D61B00C44843 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,12 +52,13 @@
 		8F06122A23C4D61C00C44843 /* RentalHubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalHubTests.swift; sourceTree = "<group>"; };
 		8F06122C23C4D61C00C44843 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F06123523C4D67400C44843 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8F7DC30323C5E40700487686 /* RetriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetriveViewController.swift; sourceTree = "<group>"; };
+		8F37A78D24041864007EFA33 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		8F6E81762404276F002D93AE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8F9D18AA23FBFB850071FC15 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		8F9D18AC23FBFB900071FC15 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8F9D18AE23FBFB9C0071FC15 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		A8051D37F0CF37962F2769F1 /* Pods_RentalHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB25D13528A0EC15E49408C0 /* Pods-RentalHubTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHubTests.debug.xcconfig"; path = "Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A052D655000B804148BF6374 /* Pods-RentalHubTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHubTests.debug.xcconfig"; path = "Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B3C808E3DC8C7185D757C7DB /* Pods-RentalHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHub.release.xcconfig"; path = "Target Support Files/Pods-RentalHub/Pods-RentalHub.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56EDD4BCCB2007C053FA0CFC /* Pods_RentalHub.framework in Frameworks */,
+				AB26410C2095ACA9C9837839 /* Pods_RentalHub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71CEA60AB316BB8A0592CBDF /* Pods_RentalHubTests.framework in Frameworks */,
+				A57CDD47F5C4D02082E99D60 /* Pods_RentalHubTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,21 +84,12 @@
 		451713DC4B346F3B63548AD9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				03B6D611C183711E7A3FD539 /* Pods-RentalHub.debug.xcconfig */,
-				21E8F540AB67B5DAA768F3D6 /* Pods-RentalHub.release.xcconfig */,
-				DB25D13528A0EC15E49408C0 /* Pods-RentalHubTests.debug.xcconfig */,
-				55611C82D52DE8C8F7A3E777 /* Pods-RentalHubTests.release.xcconfig */,
+				2BC0E21F6885AC9E14334C6B /* Pods-RentalHub.debug.xcconfig */,
+				B3C808E3DC8C7185D757C7DB /* Pods-RentalHub.release.xcconfig */,
+				A052D655000B804148BF6374 /* Pods-RentalHubTests.debug.xcconfig */,
+				20DB48F5EE78C63FBCDBC73C /* Pods-RentalHubTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		73D9820F2002E046DDF88A5A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5BDC3A550FE90332C0F70882 /* Pods_RentalHub.framework */,
-				A8051D37F0CF37962F2769F1 /* Pods_RentalHubTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8F06120723C4D61A00C44843 = {
@@ -106,7 +99,7 @@
 				8F06122923C4D61C00C44843 /* RentalHubTests */,
 				8F06121123C4D61B00C44843 /* Products */,
 				451713DC4B346F3B63548AD9 /* Pods */,
-				73D9820F2002E046DDF88A5A /* Frameworks */,
+				AD3675598C8E7593B4AA57CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,7 +124,8 @@
 				8F06121C23C4D61C00C44843 /* Assets.xcassets */,
 				8F06121E23C4D61C00C44843 /* LaunchScreen.storyboard */,
 				8F06122123C4D61C00C44843 /* Info.plist */,
-				8F7DC30323C5E40700487686 /* RetriveViewController.swift */,
+				8F37A78D24041864007EFA33 /* Utilities.swift */,
+				8F6E81762404276F002D93AE /* Constants.swift */,
 			);
 			path = RentalHub;
 			sourceTree = "<group>";
@@ -155,6 +149,15 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		AD3675598C8E7593B4AA57CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C0A70DB1141B68A0647AE5C /* Pods_RentalHub.framework */,
+				0AC6AE6D7143FF0DCF82A287 /* Pods_RentalHubTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,11 +165,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F06122F23C4D61C00C44843 /* Build configuration list for PBXNativeTarget "RentalHub" */;
 			buildPhases = (
-				D27A04A531205493C61CEFC2 /* [CP] Check Pods Manifest.lock */,
+				48EF8E914F60CBC2BD8F162E /* [CP] Check Pods Manifest.lock */,
 				8F06120C23C4D61B00C44843 /* Sources */,
 				8F06120D23C4D61B00C44843 /* Frameworks */,
 				8F06120E23C4D61B00C44843 /* Resources */,
-				B205E33AAF0A8625105BAF27 /* [CP] Embed Pods Frameworks */,
+				0B365735D0D3B0039508BF59 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -181,11 +184,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F06123223C4D61C00C44843 /* Build configuration list for PBXNativeTarget "RentalHubTests" */;
 			buildPhases = (
-				D5DCF51891A9B0EACA3D9440 /* [CP] Check Pods Manifest.lock */,
+				A4CB558568CC8DED7AB4B7DE /* [CP] Check Pods Manifest.lock */,
 				8F06122223C4D61C00C44843 /* Sources */,
 				8F06122323C4D61C00C44843 /* Frameworks */,
 				8F06122423C4D61C00C44843 /* Resources */,
-				D2E68B312E664847F9611D7E /* [CP] Embed Pods Frameworks */,
+				20727DE2079443BE20B351B3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -258,7 +261,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B205E33AAF0A8625105BAF27 /* [CP] Embed Pods Frameworks */ = {
+		0B365735D0D3B0039508BF59 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -275,7 +278,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalHub/Pods-RentalHub-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D27A04A531205493C61CEFC2 /* [CP] Check Pods Manifest.lock */ = {
+		20727DE2079443BE20B351B3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48EF8E914F60CBC2BD8F162E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -297,24 +317,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D2E68B312E664847F9611D7E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D5DCF51891A9B0EACA3D9440 /* [CP] Check Pods Manifest.lock */ = {
+		A4CB558568CC8DED7AB4B7DE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -344,12 +347,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F9D18AD23FBFB900071FC15 /* LoginViewController.swift in Sources */,
-				8F7DC30423C5E40700487686 /* RetriveViewController.swift in Sources */,
 				8F06121823C4D61B00C44843 /* ViewController.swift in Sources */,
 				8F06121423C4D61B00C44843 /* AppDelegate.swift in Sources */,
 				8F06121623C4D61B00C44843 /* SceneDelegate.swift in Sources */,
 				8F9D18AF23FBFB9C0071FC15 /* HomeViewController.swift in Sources */,
+				8F37A78E24041864007EFA33 /* Utilities.swift in Sources */,
 				8F9D18AB23FBFB850071FC15 /* SignUpViewController.swift in Sources */,
+				8F6E81772404276F002D93AE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +511,7 @@
 		};
 		8F06123023C4D61C00C44843 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03B6D611C183711E7A3FD539 /* Pods-RentalHub.debug.xcconfig */;
+			baseConfigurationReference = 2BC0E21F6885AC9E14334C6B /* Pods-RentalHub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -526,7 +530,7 @@
 		};
 		8F06123123C4D61C00C44843 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21E8F540AB67B5DAA768F3D6 /* Pods-RentalHub.release.xcconfig */;
+			baseConfigurationReference = B3C808E3DC8C7185D757C7DB /* Pods-RentalHub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -545,7 +549,7 @@
 		};
 		8F06123323C4D61C00C44843 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB25D13528A0EC15E49408C0 /* Pods-RentalHubTests.debug.xcconfig */;
+			baseConfigurationReference = A052D655000B804148BF6374 /* Pods-RentalHubTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -567,7 +571,7 @@
 		};
 		8F06123423C4D61C00C44843 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55611C82D52DE8C8F7A3E777 /* Pods-RentalHubTests.release.xcconfig */;
+			baseConfigurationReference = 20DB48F5EE78C63FBCDBC73C /* Pods-RentalHubTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

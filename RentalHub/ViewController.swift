@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import FirebaseDatabase
 import FirebaseStorage
 
 class ViewController: UIViewController{
 
-    var ref: DatabaseReference!
-    var databaseHandle: DatabaseHandle!
-    var postData = [String]()
+//    var ref: DatabaseReference!
+//    var databaseHandle: DatabaseHandle!
+//    var postData = [String]()
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var loginBtn: UIButton!
     
@@ -23,11 +22,11 @@ class ViewController: UIViewController{
         // Do any additional setup after loading the view.
         
         //database reference
-        ref = Database.database().reference()
-        
-        ref.child("users").observeSingleEvent(of: .value) { (snapshot) in
-            let dataDict = snapshot.value as? NSDictionary
-        }
+//        ref = Database.database().reference()
+//        
+//        ref.child("users").observeSingleEvent(of: .value) { (snapshot) in
+//            let dataDict = snapshot.value as? NSDictionary
+//        }
         
     }
     

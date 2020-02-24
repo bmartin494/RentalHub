@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45F60E6C50E0B3BC5AC2EF1B /* Pods_RentalHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F09B6491C040CCA75FACBAF8 /* Pods_RentalHub.framework */; };
 		8F06121423C4D61B00C44843 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06121323C4D61B00C44843 /* AppDelegate.swift */; };
 		8F06121623C4D61B00C44843 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06121523C4D61B00C44843 /* SceneDelegate.swift */; };
 		8F06121823C4D61B00C44843 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06121723C4D61B00C44843 /* ViewController.swift */; };
@@ -22,7 +21,8 @@
 		8F9D18AB23FBFB850071FC15 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D18AA23FBFB850071FC15 /* SignUpViewController.swift */; };
 		8F9D18AD23FBFB900071FC15 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D18AC23FBFB900071FC15 /* LoginViewController.swift */; };
 		8F9D18AF23FBFB9C0071FC15 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D18AE23FBFB9C0071FC15 /* HomeViewController.swift */; };
-		A36EC33291957F87F5C5EB10 /* Pods_RentalHubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E42C5C6D2DBFFF2CDE8BC88 /* Pods_RentalHubTests.framework */; };
+		A57CDD47F5C4D02082E99D60 /* Pods_RentalHubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC6AE6D7143FF0DCF82A287 /* Pods_RentalHubTests.framework */; };
+		AB26410C2095ACA9C9837839 /* Pods_RentalHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0A70DB1141B68A0647AE5C /* Pods_RentalHub.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4E42C5C6D2DBFFF2CDE8BC88 /* Pods_RentalHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		540E86D76DA2603032C1F9E1 /* Pods-RentalHubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHubTests.release.xcconfig"; path = "Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests.release.xcconfig"; sourceTree = "<group>"; };
+		0AC6AE6D7143FF0DCF82A287 /* Pods_RentalHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C0A70DB1141B68A0647AE5C /* Pods_RentalHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20DB48F5EE78C63FBCDBC73C /* Pods-RentalHubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHubTests.release.xcconfig"; path = "Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests.release.xcconfig"; sourceTree = "<group>"; };
+		2BC0E21F6885AC9E14334C6B /* Pods-RentalHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHub.debug.xcconfig"; path = "Target Support Files/Pods-RentalHub/Pods-RentalHub.debug.xcconfig"; sourceTree = "<group>"; };
 		8F06121023C4D61B00C44843 /* RentalHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RentalHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F06121323C4D61B00C44843 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F06121523C4D61B00C44843 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,10 +57,8 @@
 		8F9D18AA23FBFB850071FC15 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		8F9D18AC23FBFB900071FC15 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8F9D18AE23FBFB9C0071FC15 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		BF89AF5330D47CB8DB300ABE /* Pods-RentalHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHub.release.xcconfig"; path = "Target Support Files/Pods-RentalHub/Pods-RentalHub.release.xcconfig"; sourceTree = "<group>"; };
-		DBF473359C404154A6AB523D /* Pods-RentalHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHub.debug.xcconfig"; path = "Target Support Files/Pods-RentalHub/Pods-RentalHub.debug.xcconfig"; sourceTree = "<group>"; };
-		E0AB79E56164E8E126067AD9 /* Pods-RentalHubTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHubTests.debug.xcconfig"; path = "Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F09B6491C040CCA75FACBAF8 /* Pods_RentalHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A052D655000B804148BF6374 /* Pods-RentalHubTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHubTests.debug.xcconfig"; path = "Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B3C808E3DC8C7185D757C7DB /* Pods-RentalHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHub.release.xcconfig"; path = "Target Support Files/Pods-RentalHub/Pods-RentalHub.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45F60E6C50E0B3BC5AC2EF1B /* Pods_RentalHub.framework in Frameworks */,
+				AB26410C2095ACA9C9837839 /* Pods_RentalHub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A36EC33291957F87F5C5EB10 /* Pods_RentalHubTests.framework in Frameworks */,
+				A57CDD47F5C4D02082E99D60 /* Pods_RentalHubTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,10 +84,10 @@
 		451713DC4B346F3B63548AD9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DBF473359C404154A6AB523D /* Pods-RentalHub.debug.xcconfig */,
-				BF89AF5330D47CB8DB300ABE /* Pods-RentalHub.release.xcconfig */,
-				E0AB79E56164E8E126067AD9 /* Pods-RentalHubTests.debug.xcconfig */,
-				540E86D76DA2603032C1F9E1 /* Pods-RentalHubTests.release.xcconfig */,
+				2BC0E21F6885AC9E14334C6B /* Pods-RentalHub.debug.xcconfig */,
+				B3C808E3DC8C7185D757C7DB /* Pods-RentalHub.release.xcconfig */,
+				A052D655000B804148BF6374 /* Pods-RentalHubTests.debug.xcconfig */,
+				20DB48F5EE78C63FBCDBC73C /* Pods-RentalHubTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -99,7 +99,7 @@
 				8F06122923C4D61C00C44843 /* RentalHubTests */,
 				8F06121123C4D61B00C44843 /* Products */,
 				451713DC4B346F3B63548AD9 /* Pods */,
-				CEB96C2F6B107A86EB80A144 /* Frameworks */,
+				AD3675598C8E7593B4AA57CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,11 +149,11 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		CEB96C2F6B107A86EB80A144 /* Frameworks */ = {
+		AD3675598C8E7593B4AA57CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F09B6491C040CCA75FACBAF8 /* Pods_RentalHub.framework */,
-				4E42C5C6D2DBFFF2CDE8BC88 /* Pods_RentalHubTests.framework */,
+				0C0A70DB1141B68A0647AE5C /* Pods_RentalHub.framework */,
+				0AC6AE6D7143FF0DCF82A287 /* Pods_RentalHubTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -165,11 +165,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F06122F23C4D61C00C44843 /* Build configuration list for PBXNativeTarget "RentalHub" */;
 			buildPhases = (
-				86C605096837797365B45CEE /* [CP] Check Pods Manifest.lock */,
+				48EF8E914F60CBC2BD8F162E /* [CP] Check Pods Manifest.lock */,
 				8F06120C23C4D61B00C44843 /* Sources */,
 				8F06120D23C4D61B00C44843 /* Frameworks */,
 				8F06120E23C4D61B00C44843 /* Resources */,
-				FF7D092683F73D7106DA91FC /* [CP] Embed Pods Frameworks */,
+				0B365735D0D3B0039508BF59 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -184,11 +184,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F06123223C4D61C00C44843 /* Build configuration list for PBXNativeTarget "RentalHubTests" */;
 			buildPhases = (
-				833A3E32A8B73AF69BA198DB /* [CP] Check Pods Manifest.lock */,
+				A4CB558568CC8DED7AB4B7DE /* [CP] Check Pods Manifest.lock */,
 				8F06122223C4D61C00C44843 /* Sources */,
 				8F06122323C4D61C00C44843 /* Frameworks */,
 				8F06122423C4D61C00C44843 /* Resources */,
-				038727FC82FAF86F614FA6C9 /* [CP] Embed Pods Frameworks */,
+				20727DE2079443BE20B351B3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -261,7 +261,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		038727FC82FAF86F614FA6C9 /* [CP] Embed Pods Frameworks */ = {
+		0B365735D0D3B0039508BF59 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalHub/Pods-RentalHub-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalHub/Pods-RentalHub-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalHub/Pods-RentalHub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		20727DE2079443BE20B351B3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -278,29 +295,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		833A3E32A8B73AF69BA198DB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RentalHubTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		86C605096837797365B45CEE /* [CP] Check Pods Manifest.lock */ = {
+		48EF8E914F60CBC2BD8F162E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -322,21 +317,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF7D092683F73D7106DA91FC /* [CP] Embed Pods Frameworks */ = {
+		A4CB558568CC8DED7AB4B7DE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RentalHub/Pods-RentalHub-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RentalHub/Pods-RentalHub-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RentalHubTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalHub/Pods-RentalHub-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -511,7 +511,7 @@
 		};
 		8F06123023C4D61C00C44843 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBF473359C404154A6AB523D /* Pods-RentalHub.debug.xcconfig */;
+			baseConfigurationReference = 2BC0E21F6885AC9E14334C6B /* Pods-RentalHub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -530,7 +530,7 @@
 		};
 		8F06123123C4D61C00C44843 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF89AF5330D47CB8DB300ABE /* Pods-RentalHub.release.xcconfig */;
+			baseConfigurationReference = B3C808E3DC8C7185D757C7DB /* Pods-RentalHub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -549,7 +549,7 @@
 		};
 		8F06123323C4D61C00C44843 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0AB79E56164E8E126067AD9 /* Pods-RentalHubTests.debug.xcconfig */;
+			baseConfigurationReference = A052D655000B804148BF6374 /* Pods-RentalHubTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -571,7 +571,7 @@
 		};
 		8F06123423C4D61C00C44843 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 540E86D76DA2603032C1F9E1 /* Pods-RentalHubTests.release.xcconfig */;
+			baseConfigurationReference = 20DB48F5EE78C63FBCDBC73C /* Pods-RentalHubTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

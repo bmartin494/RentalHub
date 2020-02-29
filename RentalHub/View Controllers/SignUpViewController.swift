@@ -16,6 +16,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var lastNameTxt: UITextField!
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var landlordSwitch: UISwitch!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
@@ -99,7 +100,7 @@ class SignUpViewController: UIViewController {
     }
     
     func transitionToHome() {
-        let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+        let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarController) as? UITabBarController
         
         view.window?.rootViewController = homeViewController
         view.window?.makeKeyAndVisible()

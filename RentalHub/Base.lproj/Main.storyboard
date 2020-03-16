@@ -255,7 +255,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="wL8-Y0-gzC">
-                                <rect key="frame" x="40" y="84" width="334" height="524.5"/>
+                                <rect key="frame" x="40" y="84" width="334" height="370"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select issue type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zgU-8v-MQ4">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
@@ -278,55 +278,62 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DF6-LU-FtU">
-                                        <rect key="frame" x="0.0" y="240" width="334" height="40"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="DF6-LU-FtU">
+                                        <rect key="frame" x="0.0" y="240" width="334" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attach an image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq9-6T-cEA">
-                                                <rect key="frame" x="0.0" y="0.0" width="124" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="right" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rE4-1q-ann">
-                                                <rect key="frame" x="124" y="0.0" width="210" height="40"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <button opaque="NO" contentMode="right" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rE4-1q-ann">
+                                                <rect key="frame" x="125" y="0.0" width="209" height="50"/>
                                                 <state key="normal" image="camera.fill" catalog="system"/>
+                                                <connections>
+                                                    <action selector="selectImageTapped:" destination="cwJ-NU-Es6" eventType="touchUpInside" id="tDR-WK-XAI"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="d65-VC-GfV"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="ns4-qa-qhu"/>
                                         </constraints>
                                     </stackView>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sV9-pm-F6F">
+                                        <rect key="frame" x="0.0" y="305" width="334" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="Umv-Ut-peg"/>
+                                        </constraints>
+                                    </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="AdE-zG-3xE">
-                                        <rect key="frame" x="0.0" y="310" width="334" height="41"/>
+                                        <rect key="frame" x="0.0" y="320" width="334" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is there an immediate danger caused by this issue?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZr-Fp-PPU">
-                                                <rect key="frame" x="0.0" y="0.0" width="291.5" height="41"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="291.5" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Nkz-NF-MHM"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WCk-46-uOf">
-                                                <rect key="frame" x="291.5" y="5" width="44.5" height="31"/>
+                                                <rect key="frame" x="291.5" y="9.5" width="44.5" height="31"/>
                                             </switch>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHc-gl-yhT">
-                                        <rect key="frame" x="0.0" y="381" width="334" height="143.5"/>
-                                        <string key="text">DO NOT use this system as an alternative in an instance where the emergency services are required. If there is immediate risk of serious injury to a person contact the emergency services now.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="fOG-Fs-gn9"/>
                                     <constraint firstItem="47P-zo-VWC" firstAttribute="height" secondItem="zgU-8v-MQ4" secondAttribute="height" id="oDC-fS-T4o"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tP4-Vm-gS6">
-                                <rect key="frame" x="40" y="752" width="334" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tP4-Vm-gS6">
+                                <rect key="frame" x="40" y="723" width="334" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="TF7-gQ-dmw"/>
+                                </constraints>
                                 <state key="normal" title="Submit Report"/>
                                 <connections>
                                     <action selector="submitBtnTapped:" destination="cwJ-NU-Es6" eventType="touchUpInside" id="lhF-WY-DAr"/>
@@ -335,18 +342,28 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="aeB-hb-vrP" firstAttribute="trailing" secondItem="tP4-Vm-gS6" secondAttribute="trailing" constant="40" id="954-KH-Ihm"/>
                             <constraint firstItem="wL8-Y0-gzC" firstAttribute="leading" secondItem="aeB-hb-vrP" secondAttribute="leading" constant="40" id="96i-vO-vtY"/>
+                            <constraint firstItem="aeB-hb-vrP" firstAttribute="trailing" secondItem="wL8-Y0-gzC" secondAttribute="trailing" constant="40" id="9go-2w-YEG"/>
+                            <constraint firstItem="aeB-hb-vrP" firstAttribute="bottom" secondItem="tP4-Vm-gS6" secondAttribute="bottom" constant="30" id="GC9-Zp-LXs"/>
+                            <constraint firstItem="wL8-Y0-gzC" firstAttribute="leading" secondItem="aeB-hb-vrP" secondAttribute="leading" constant="40" id="NPS-bE-fVq"/>
+                            <constraint firstItem="wL8-Y0-gzC" firstAttribute="top" secondItem="aeB-hb-vrP" secondAttribute="top" constant="40" id="TkH-Ub-f0o"/>
                             <constraint firstItem="aeB-hb-vrP" firstAttribute="trailing" secondItem="wL8-Y0-gzC" secondAttribute="trailing" constant="40" id="jct-1n-tHM"/>
                             <constraint firstItem="wL8-Y0-gzC" firstAttribute="top" secondItem="aeB-hb-vrP" secondAttribute="top" constant="40" id="klf-yy-kRR"/>
+                            <constraint firstItem="tP4-Vm-gS6" firstAttribute="leading" secondItem="aeB-hb-vrP" secondAttribute="leading" constant="40" id="syr-MO-DfR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aeB-hb-vrP"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Report" image="exclamationmark.triangle.fill" catalog="system" selectedImage="exclamationmark.triangle.fill" id="LSH-mh-D3K"/>
                     <connections>
+                        <outlet property="alternativeIssueTextField" destination="47P-zo-VWC" id="iJQ-Iq-tIx"/>
+                        <outlet property="attachImageLabel" destination="Vq9-6T-cEA" id="BfU-F8-f3d"/>
+                        <outlet property="descriptionTextField" destination="vz5-1f-dbJ" id="CaK-0e-cAw"/>
                         <outlet property="issuePickerTextField" destination="zgU-8v-MQ4" id="fjb-Tq-bc5"/>
                         <outlet property="riskSwitch" destination="WCk-46-uOf" id="T57-Tw-4eY"/>
+                        <outlet property="selectedImageView" destination="sV9-pm-F6F" id="Isb-aM-XEI"/>
                         <outlet property="submitBtn" destination="tP4-Vm-gS6" id="9rW-Hu-iat"/>
-                        <outlet property="warningLabel" destination="OHc-gl-yhT" id="MBx-QJ-k8i"/>
+                        <outlet property="uploadImageBtn" destination="rE4-1q-ann" id="IhE-0B-zEn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RTd-2j-bcO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

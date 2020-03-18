@@ -118,7 +118,12 @@ class ReportViewController: UIViewController {
         let reportID = UUID().uuidString
         let db = Firestore.firestore()
         
-        db.collection("reports").document(Auth.auth().currentUser!.uid).collection("reports_from_user").addDocument(data: ["Issue":selectedIssue, "Description":descriptionTextField.text, "uid": reportID])
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        let date = dateFormatter.string(from: today)
+        
+        db.collection("reports").document(Auth.auth().currentUser!.uid).collection("reports_from_user").addDocument(data: ["Issue":selectedIssue!, "Description":descriptionTextField.text!, "Date":date, "uid": reportID])
                 { err in
                     if let err = err {
                         print("Error writing document: \(err)")
@@ -144,6 +149,23 @@ class ReportViewController: UIViewController {
                 print(error!.localizedDescription)
                 return
             }
+        }
+        
+        let alert = UIAlertController(title: "Success", message: "Report logged successfully!", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
+        
+        issuePickerTextField.text = ""
+        alternativeIssueTextField.text = ""
+        descriptionTextField.text = ""
+        
+        if selectedImageView.isHidden == false {
+            selectedImageView.isHidden = true
+            uploadImageBtn.setImage(UIImage(systemName: "camera.fill"), for: .normal)
+            attachImageLabel.text = "Attach an image"
+            selectedImageView.image = nil
         }
     }
     

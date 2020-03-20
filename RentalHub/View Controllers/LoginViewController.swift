@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class LoginViewController: UIViewController {
 
@@ -28,9 +29,6 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginTapped(_ sender: Any) {
-        
-        //TODO validate the text fields
-        
         //signing in the user
         signIn()
     }

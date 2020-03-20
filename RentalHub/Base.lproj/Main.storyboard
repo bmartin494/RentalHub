@@ -68,7 +68,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BaC-hM-iHK">
-                                <rect key="frame" x="40" y="128" width="334" height="421.5"/>
+                                <rect key="frame" x="40" y="128" width="334" height="462"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VWB-7y-1jz">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
@@ -90,22 +90,21 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKS-Cf-PnN">
-                                        <rect key="frame" x="0.0" y="280" width="334" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Landlord user account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rR-Rp-rsv">
-                                                <rect key="frame" x="0.0" y="0.0" width="285" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Cnj-tJ-KU2">
-                                                <rect key="frame" x="285" y="0.0" width="51" height="31"/>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select user account type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rR-Rp-rsv">
+                                        <rect key="frame" x="0.0" y="280" width="334" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QEh-iU-Ovk">
+                                        <rect key="frame" x="0.0" y="320.5" width="334" height="32"/>
+                                        <segments>
+                                            <segment title="Tennant"/>
+                                            <segment title="Landlord"/>
+                                        </segments>
+                                    </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6c-h0-k1r">
-                                        <rect key="frame" x="0.0" y="331" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="371.5" width="334" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="H8Q-xP-Ib5"/>
                                         </constraints>
@@ -115,7 +114,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cL-0m-uAE">
-                                        <rect key="frame" x="0.0" y="401" width="334" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="441.5" width="334" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -145,7 +144,7 @@
                         <outlet property="emailTxt" destination="Av3-Yt-eti" id="OC5-aR-baq"/>
                         <outlet property="errorLabel" destination="0cL-0m-uAE" id="yU8-e2-5P1"/>
                         <outlet property="firstNameTxt" destination="VWB-7y-1jz" id="FfR-A6-iz0"/>
-                        <outlet property="landlordSwitch" destination="Cnj-tJ-KU2" id="Fdt-cf-0sz"/>
+                        <outlet property="landlordTennantSelector" destination="QEh-iU-Ovk" id="r5U-8E-TtM"/>
                         <outlet property="lastNameTxt" destination="gO0-m7-s7Y" id="TbX-g6-LZf"/>
                         <outlet property="passwordTxt" destination="TBn-KM-BWU" id="UwO-UK-JvC"/>
                         <outlet property="signUpBtn" destination="u6c-h0-k1r" id="BrM-M0-DbR"/>

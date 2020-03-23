@@ -123,14 +123,6 @@ class ReportViewController: UIViewController {
         dateFormatter.dateStyle = .short
         let date = dateFormatter.string(from: today)
         
-        db.collection("reports").document(Auth.auth().currentUser!.uid).collection("reports_from_user").addDocument(data: ["Issue":selectedIssue!, "Description":descriptionTextField.text!, "Date":date, "uid": reportID])
-                { err in
-                    if let err = err {
-                        print("Error writing document: \(err)")
-                    } else {
-                        print("Document successfully written!")
-                    }
-        }
         guard let imageSelected = self.image else {
             print("image is nil")
             return
@@ -141,7 +133,6 @@ class ReportViewController: UIViewController {
         }
         let storageRef = Storage.storage().reference(forURL: "gs://rentalhub-82cfc.appspot.com/reports/users/" + Auth.auth().currentUser!.uid)
         let storageReportRef = storageRef.child(reportID)
-        
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         storageReportRef.putData(imageData, metadata: metaData) { (storageMetaData, error) in
@@ -149,6 +140,15 @@ class ReportViewController: UIViewController {
                 print(error!.localizedDescription)
                 return
             }
+        }
+        let imageURL = ("gs://rentalhub-82cfc.appspot.com/reports/users/" + Auth.auth().currentUser!.uid + "/" + reportID)
+        db.collection("reports").addDocument(data: ["Issue":selectedIssue!, "Description":descriptionTextField.text!, "Date":date, "UserID":Auth.auth().currentUser!.uid, "uid": reportID, "ImageURL": imageURL])
+                { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                    }
         }
         
         let alert = UIAlertController(title: "Success", message: "Report logged successfully!", preferredStyle: .alert)

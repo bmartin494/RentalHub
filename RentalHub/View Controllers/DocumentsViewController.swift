@@ -20,10 +20,15 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
     var db = Firestore.firestore()
     var reports = [Report]()
     let agreements = [String]()
+    var myIndex = 0
     var documentCollectionRef = Firestore.firestore().collection("reports")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        agreementsTableView.register(ReportCell.self, forCellReuseIdentifier: cellID)
+        reportsTableView.register(ReportCell.self, forCellReuseIdentifier: cellID)
+
         agreementsTableView.delegate = self
         agreementsTableView.dataSource = self
         agreementsTableView.rowHeight = UITableView.automaticDimension
@@ -72,15 +77,13 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func userCheck() {
-        db.collection("users").whereField("uid", isEqualTo: currentUser)
+        db.collection("users").whereField("uid", isEqualTo: currentUser!)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
                         print("\(document.documentID)")
-                        let data = document.data()
-                        let accountType = data["account_type"]
                     }
                 }
         }
@@ -89,7 +92,7 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableView == agreementsTableView {
-            if agreements.count == 0 {
+            if agreements.count <= 0 {
                 return 1
             }
             else{
@@ -105,7 +108,8 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellID)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         
         if tableView == reportsTableView {
             let report = reports[indexPath.row]
@@ -114,7 +118,8 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         if tableView == agreementsTableView {
-            if agreements.count == 0 {
+            if agreements.count <= 0 {
+                agreementsTableView.allowsSelection = false
                 cell.textLabel?.text = "No documents stored"
                 cell.detailTextLabel?.text = nil
             }
@@ -129,7 +134,31 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Cell clicked")
+        
+        myIndex = indexPath.row
+        performSegue(withIdentifier: "showReport", sender: self)
+        
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? FullReportViewController {
+            let report = reports[myIndex]
+            destination.titleText = report.issue
+        }
+    }
+
+}
+
+
+
+class ReportCell: UITableViewCell {
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

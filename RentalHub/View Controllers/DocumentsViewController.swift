@@ -66,7 +66,7 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
                     newReport.userID = userID
                     newReport.uid = reportID
                     newReport.imageURL = imageURL
-        
+                    
                     self.reports.append(newReport)
                 }
                 self.reportsTableView.reloadData()
@@ -144,7 +144,16 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         
         if let destination = segue.destination as? FullReportViewController {
             let report = reports[myIndex]
-            destination.titleText = report.issue
+            destination.propertyText = report.property
+            destination.dateText = report.date
+            destination.issueText = report.issue
+            destination.descriptionText = report.issueDescription
+            if report.imageURL != "nil" {
+                destination.imageURL = report.imageURL
+            }
+            else {
+                destination.imageURL = nil
+            }
         }
     }
 

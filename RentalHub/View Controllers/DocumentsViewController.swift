@@ -113,8 +113,13 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         
         if tableView == reportsTableView {
             let report = reports[indexPath.row]
-            cell.textLabel?.text = report.issue
-            cell.detailTextLabel?.text = report.issueDescription
+            if reports.count <= 0 {
+                cell.textLabel?.text = "No reports stored"
+            }
+            else {
+                cell.textLabel?.text = report.issue
+                cell.detailTextLabel?.text = report.issueDescription
+            }
         }
         
         if tableView == agreementsTableView {

@@ -45,6 +45,7 @@ class LoginViewController: UIViewController {
                 self.errorLabel.alpha = 1
             }
             else {
+                
                 self.transitionToHome()
             }
         }

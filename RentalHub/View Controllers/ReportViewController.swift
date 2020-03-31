@@ -160,7 +160,7 @@ class ReportViewController: UIViewController {
             uploadDatabaseInfo(downloadStringURL: "nil")
         }
 
-        let alert = UIAlertController(title: "Success", message: "Report logged successfully!", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Report logged successfully!", message: "View your report receipt in the 'Documents tab.", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         

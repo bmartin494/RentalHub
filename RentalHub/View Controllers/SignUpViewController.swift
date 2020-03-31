@@ -16,6 +16,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var lastNameTxt: UITextField!
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var phoneNumberTxt: UITextField!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var landlordTennantSelector: UISegmentedControl!
@@ -64,70 +65,79 @@ class SignUpViewController: UIViewController {
             showError(error!)
         }
         else {
-            //create cleaned versions of the data
-            let firstName = self.firstNameTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let lastName = self.lastNameTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = self.emailTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = self.passwordTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let accountType = self.landlordTennantSelector.selectedSegmentIndex
-            
-            if accountType == 0 {
-                let alert = UIAlertController(title: "Account type check", message: "You have chosen to create a 'tenant' user account?", preferredStyle: .alert)
+            if self.firstNameTxt.text == nil || self.lastNameTxt.text == nil || self.emailTxt.text == nil || self.passwordTxt.text == nil || self.phoneNumberTxt.text == nil {
                 
-                alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
-                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(action: UIAlertAction!) in
-                    //create the user
-                    Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-                        //check for errors
-                        if err != nil {
-                            self.showError("Error creating user")
-                        }
-                        else {
-                            
-                            //user created successfully, storing first and last name
-                            let db = Firestore.firestore()
-                            
-                            db.collection("users").addDocument(data: ["first_name":firstName, "last_name":lastName, "account_type":accountType, "uid": result!.user.uid]) { (error) in
-                                
-                                if error != nil {
-                                    self.showError("User data could not be saved")
-                                }
-                            }
-                            //transition to home screen
-                            self.transitionToHome()
-                        }
-                    }
-                }))
-                self.present(alert, animated: true)
+                let alert = UIAlertController(title: "Fields incomplete", message: "Please fill out all fields in order to sign up.", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             }
-            if accountType == 1 {
-                let alert = UIAlertController(title: "Account type check", message: "You have chosen to create a 'landlord' user account?", preferredStyle: .alert)
+            else{
+                //create cleaned versions of the data
+                let firstName = self.firstNameTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let lastName = self.lastNameTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let email = self.emailTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let password = self.passwordTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let phone = self.phoneNumberTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let accountType = self.landlordTennantSelector.selectedSegmentIndex
                 
-                alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
-                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(action: UIAlertAction!) in
-                    //create the user
-                    Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-                        //check for errors
-                        if err != nil {
-                            self.showError("Error creating user")
-                        }
-                        else {
-                            
-                            //user created successfully, storing first and last name
-                            let db = Firestore.firestore()
-                            
-                            db.collection("users").addDocument(data: ["first_name":firstName, "last_name":lastName, "account_type":accountType, "uid": result!.user.uid]) { (error) in
-                                
-                                if error != nil {
-                                    self.showError("User data could not be saved")
-                                }
+                if accountType == 0 {
+                    let alert = UIAlertController(title: "Account type check", message: "You have chosen to create a 'tenant' user account?", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(action: UIAlertAction!) in
+                        //create the user
+                        Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                            //check for errors
+                            if err != nil {
+                                self.showError("Error creating user")
                             }
-                            //transition to home screen
-                            self.transitionToHome()
+                            else {
+                                
+                                //user created successfully, storing first and last name
+                                let db = Firestore.firestore()
+                                
+                                db.collection("users").addDocument(data: ["first_name":firstName, "last_name":lastName, "account_type":accountType, "phone":phone,"uid": result!.user.uid]) { (error) in
+                                    
+                                    if error != nil {
+                                        self.showError("User data could not be saved")
+                                    }
+                                }
+                                //transition to home screen
+                                self.transitionToHome()
+                            }
                         }
-                    }
-                }))
-                self.present(alert, animated: true)
+                    }))
+                    self.present(alert, animated: true)
+                }
+                if accountType == 1 {
+                    let alert = UIAlertController(title: "Account type check", message: "You have chosen to create a 'landlord' user account?", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(action: UIAlertAction!) in
+                        //create the user
+                        Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                            //check for errors
+                            if err != nil {
+                                self.showError("Error creating user")
+                            }
+                            else {
+                                
+                                //user created successfully, storing first and last name
+                                let db = Firestore.firestore()
+                                
+                                db.collection("users").addDocument(data: ["first_name":firstName, "last_name":lastName, "account_type":accountType, "uid": result!.user.uid]) { (error) in
+                                    
+                                    if error != nil {
+                                        self.showError("User data could not be saved")
+                                    }
+                                }
+                                //transition to home screen
+                                self.transitionToHome()
+                            }
+                        }
+                    }))
+                    self.present(alert, animated: true)
+                }
             }
         }
     }

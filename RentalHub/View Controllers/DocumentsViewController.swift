@@ -27,16 +27,16 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         agreementsTableView.register(ReportCell.self, forCellReuseIdentifier: cellID)
-        reportsTableView.register(ReportCell.self, forCellReuseIdentifier: cellID)
-
         agreementsTableView.delegate = self
         agreementsTableView.dataSource = self
         agreementsTableView.rowHeight = UITableView.automaticDimension
+        agreementsTableView.tableFooterView = UIView()
+        
+        reportsTableView.register(ReportCell.self, forCellReuseIdentifier: cellID)
         reportsTableView.delegate = self
         reportsTableView.dataSource = self
         reportsTableView.rowHeight = UITableView.automaticDimension
         reportsTableView.tableFooterView = UIView()
-        agreementsTableView.tableFooterView = UIView()
 
     }
     
@@ -76,18 +76,18 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func userCheck() {
-        db.collection("users").whereField("uid", isEqualTo: currentUser!)
-            .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        print("\(document.documentID)")
-                    }
-                }
-        }
-    }
+//    func userCheck() {
+//        db.collection("users").whereField("uid", isEqualTo: currentUser!)
+//            .getDocuments() { (querySnapshot, err) in
+//                if let err = err {
+//                    print("Error getting documents: \(err)")
+//                } else {
+//                    for document in querySnapshot!.documents {
+//                        print("\(document.documentID)")
+//                    }
+//                }
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -114,6 +114,7 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         if tableView == reportsTableView {
             let report = reports[indexPath.row]
             if reports.count <= 0 {
+                reportsTableView.allowsSelection = false
                 cell.textLabel?.text = "No reports stored"
             }
             else {
@@ -140,8 +141,11 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: true)
         myIndex = indexPath.row
-        performSegue(withIdentifier: "showReport", sender: self)
+        if tableView == reportsTableView{
+            performSegue(withIdentifier: "showReport", sender: self)
+        }
         
     }
 
@@ -166,13 +170,4 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
 
 
 
-class ReportCell: UITableViewCell {
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}

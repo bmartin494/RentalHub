@@ -122,27 +122,31 @@ class ReportViewController: UIViewController {
     
     @IBAction func submitBtnTapped(_ sender: Any) {
         
-        guard let imageSelected = self.selectedImageView.image else {
+        var imageData: Data?
+        
+        if let imageSelected = self.selectedImageView.image {
+            imageData = imageSelected.jpegData(compressionQuality: 0.5)
+        } else {
             print("image is nil")
-            return
         }
         
-        guard let imageData = imageSelected.jpegData(compressionQuality: 0.5) else {
-            return
-        }
-        let storageRef = Storage.storage().reference(forURL: "gs://rentalhub-82cfc.appspot.com")
-        let reportRef = storageRef.child("reports").child("users").child(Auth.auth().currentUser!.uid).child(reportID)
+//        guard let imageData = imageSelected.jpegData(compressionQuality: 0.5) else {
+//            return
+//        }
         
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
         //check alternative issue field for 'other' choice
-        if self.alternativeIssueTextField.text != nil {
-            self.selectedIssue = "Other: " + self.alternativeIssueTextField.text!
+        if selectedIssue == "Other" {
+            self.selectedIssue = self.alternativeIssueTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         }
-        
+
         if selectedImageView.image != nil {
-            reportRef.putData(imageData, metadata: metaData, completion: { (storageMetaData, error) in
+            let storageRef = Storage.storage().reference(forURL: "gs://rentalhub-82cfc.appspot.com")
+            let reportRef = storageRef.child("reports").child("users").child(Auth.auth().currentUser!.uid).child(reportID)
+            
+            reportRef.putData(imageData!, metadata: metaData, completion: { (storageMetaData, error) in
                 if error != nil {
                     print(error!.localizedDescription)
                     return
@@ -151,13 +155,12 @@ class ReportViewController: UIViewController {
                 reportRef.downloadURL(completion: { (url, error) in
                     if let metaURL = url?.absoluteString{
                         
-                        let downloadStringURL = metaURL
-                        self.uploadDatabaseInfo(downloadStringURL: downloadStringURL)
+                        self.uploadDatabaseInfo(downloadStringURL: metaURL)
                     }
                 })
             })
         } else {
-            uploadDatabaseInfo(downloadStringURL: "nil")
+            self.uploadDatabaseInfo(downloadStringURL: "nil")
         }
 
         let alert = UIAlertController(title: "Report logged successfully!", message: "View your report receipt in the 'Documents tab.", preferredStyle: .alert)
@@ -170,6 +173,7 @@ class ReportViewController: UIViewController {
     
     //upload report data to database
     func uploadDatabaseInfo(downloadStringURL: String) {
+        
         dateFormatter.dateStyle = .short
         let date = dateFormatter.string(from: today)
         

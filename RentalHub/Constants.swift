@@ -13,5 +13,8 @@ struct Constants {
         
         static let tabBarController = "HomeVC"
         static let fullReportViewController = "FullReportVC"
+        static let loginController = "LoginVC"
+        static let landingController = "LandingVC"
+
     }
 }

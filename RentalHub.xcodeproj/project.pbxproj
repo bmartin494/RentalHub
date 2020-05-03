@@ -20,12 +20,21 @@
 		8F327884242510A00002318C /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F327883242510A00002318C /* Report.swift */; };
 		8F37A78E24041864007EFA33 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F37A78D24041864007EFA33 /* Utilities.swift */; };
 		8F37C5AC24069A22006FAAEA /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F37C5AB24069A22006FAAEA /* ReportViewController.swift */; };
+		8F5E509024474D9E001AFAE1 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E508F24474D9E001AFAE1 /* Property.swift */; };
+		8F5E50922447538D001AFAE1 /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E50912447538D001AFAE1 /* ReportCell.swift */; };
+		8F5E50942449D63E001AFAE1 /* CreatePropertyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E50932449D63E001AFAE1 /* CreatePropertyViewController.swift */; };
+		8F5E5096244BB375001AFAE1 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E5095244BB375001AFAE1 /* UpdatePasswordViewController.swift */; };
+		8F5E5098244CE304001AFAE1 /* FullPropertyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E5097244CE304001AFAE1 /* FullPropertyViewController.swift */; };
+		8F5E509A244CF0C6001AFAE1 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E5099244CF0C6001AFAE1 /* Request.swift */; };
 		8F6E81772404276F002D93AE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6E81762404276F002D93AE /* Constants.swift */; };
 		8F9C4D72243270CB00481C2B /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C4D71243270CB00481C2B /* AccountViewController.swift */; };
 		8F9C4D742432BEB800481C2B /* PropertyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C4D732432BEB800481C2B /* PropertyViewController.swift */; };
 		8F9D18AB23FBFB850071FC15 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D18AA23FBFB850071FC15 /* SignUpViewController.swift */; };
 		8F9D18AD23FBFB900071FC15 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D18AC23FBFB900071FC15 /* LoginViewController.swift */; };
 		8F9D18AF23FBFB9C0071FC15 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D18AE23FBFB9C0071FC15 /* HomeViewController.swift */; };
+		8FBAA42E245B28D400B68373 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAA42D245B28D400B68373 /* RequestViewController.swift */; };
+		8FBAA430245DC78200B68373 /* Tennant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAA42F245DC78200B68373 /* Tennant.swift */; };
+		8FBAA432245F81DB00B68373 /* AddDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAA431245F81DB00B68373 /* AddDocumentViewController.swift */; };
 		8FC4B82A242944F50055E13B /* FullReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC4B829242944F50055E13B /* FullReportViewController.swift */; };
 		A57CDD47F5C4D02082E99D60 /* Pods_RentalHubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC6AE6D7143FF0DCF82A287 /* Pods_RentalHubTests.framework */; };
 		AB26410C2095ACA9C9837839 /* Pods_RentalHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0A70DB1141B68A0647AE5C /* Pods_RentalHub.framework */; };
@@ -62,12 +71,21 @@
 		8F327883242510A00002318C /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		8F37A78D24041864007EFA33 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8F37C5AB24069A22006FAAEA /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		8F5E508F24474D9E001AFAE1 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		8F5E50912447538D001AFAE1 /* ReportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
+		8F5E50932449D63E001AFAE1 /* CreatePropertyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePropertyViewController.swift; sourceTree = "<group>"; };
+		8F5E5095244BB375001AFAE1 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
+		8F5E5097244CE304001AFAE1 /* FullPropertyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPropertyViewController.swift; sourceTree = "<group>"; };
+		8F5E5099244CF0C6001AFAE1 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		8F6E81762404276F002D93AE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8F9C4D71243270CB00481C2B /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		8F9C4D732432BEB800481C2B /* PropertyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyViewController.swift; sourceTree = "<group>"; };
 		8F9D18AA23FBFB850071FC15 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		8F9D18AC23FBFB900071FC15 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8F9D18AE23FBFB9C0071FC15 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8FBAA42D245B28D400B68373 /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
+		8FBAA42F245DC78200B68373 /* Tennant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tennant.swift; sourceTree = "<group>"; };
+		8FBAA431245F81DB00B68373 /* AddDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocumentViewController.swift; sourceTree = "<group>"; };
 		8FC4B829242944F50055E13B /* FullReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullReportViewController.swift; sourceTree = "<group>"; };
 		A052D655000B804148BF6374 /* Pods-RentalHubTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHubTests.debug.xcconfig"; path = "Target Support Files/Pods-RentalHubTests/Pods-RentalHubTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B3C808E3DC8C7185D757C7DB /* Pods-RentalHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalHub.release.xcconfig"; path = "Target Support Files/Pods-RentalHub/Pods-RentalHub.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +173,10 @@
 			isa = PBXGroup;
 			children = (
 				8F327883242510A00002318C /* Report.swift */,
+				8F5E508F24474D9E001AFAE1 /* Property.swift */,
+				8F5E50912447538D001AFAE1 /* ReportCell.swift */,
+				8F5E5099244CF0C6001AFAE1 /* Request.swift */,
+				8FBAA42F245DC78200B68373 /* Tennant.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,6 +193,11 @@
 				8FC4B829242944F50055E13B /* FullReportViewController.swift */,
 				8F9C4D71243270CB00481C2B /* AccountViewController.swift */,
 				8F9C4D732432BEB800481C2B /* PropertyViewController.swift */,
+				8F5E50932449D63E001AFAE1 /* CreatePropertyViewController.swift */,
+				8F5E5095244BB375001AFAE1 /* UpdatePasswordViewController.swift */,
+				8F5E5097244CE304001AFAE1 /* FullPropertyViewController.swift */,
+				8FBAA42D245B28D400B68373 /* RequestViewController.swift */,
+				8FBAA431245F81DB00B68373 /* AddDocumentViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -372,19 +399,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F5E509024474D9E001AFAE1 /* Property.swift in Sources */,
 				8F9D18AD23FBFB900071FC15 /* LoginViewController.swift in Sources */,
+				8FBAA42E245B28D400B68373 /* RequestViewController.swift in Sources */,
+				8F5E5096244BB375001AFAE1 /* UpdatePasswordViewController.swift in Sources */,
 				8F06121823C4D61B00C44843 /* LandingViewController.swift in Sources */,
 				8F9C4D72243270CB00481C2B /* AccountViewController.swift in Sources */,
 				8F06121423C4D61B00C44843 /* AppDelegate.swift in Sources */,
 				8FC4B82A242944F50055E13B /* FullReportViewController.swift in Sources */,
+				8F5E5098244CE304001AFAE1 /* FullPropertyViewController.swift in Sources */,
 				8F06121623C4D61B00C44843 /* SceneDelegate.swift in Sources */,
+				8F5E50922447538D001AFAE1 /* ReportCell.swift in Sources */,
 				8F9D18AF23FBFB9C0071FC15 /* HomeViewController.swift in Sources */,
 				8F9C4D742432BEB800481C2B /* PropertyViewController.swift in Sources */,
 				8F32787F2424FC0C0002318C /* DocumentsViewController.swift in Sources */,
+				8FBAA432245F81DB00B68373 /* AddDocumentViewController.swift in Sources */,
 				8F37C5AC24069A22006FAAEA /* ReportViewController.swift in Sources */,
 				8F37A78E24041864007EFA33 /* Utilities.swift in Sources */,
+				8F5E50942449D63E001AFAE1 /* CreatePropertyViewController.swift in Sources */,
 				8F9D18AB23FBFB850071FC15 /* SignUpViewController.swift in Sources */,
+				8F5E509A244CF0C6001AFAE1 /* Request.swift in Sources */,
 				8F6E81772404276F002D93AE /* Constants.swift in Sources */,
+				8FBAA430245DC78200B68373 /* Tennant.swift in Sources */,
 				8F327884242510A00002318C /* Report.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

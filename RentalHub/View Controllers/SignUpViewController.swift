@@ -96,14 +96,16 @@ class SignUpViewController: UIViewController {
                                 //user created successfully, storing first and last name
                                 let db = Firestore.firestore()
                                 
-                                db.collection("users").addDocument(data: ["first_name":firstName, "last_name":lastName, "account_type":accountType, "phone":phone,"uid": result!.user.uid]) { (error) in
+                                db.collection("users").addDocument(data: ["First_Name":firstName, "Last_Name":lastName, "Account_Type":accountType, "Phone":phone,"uid": result!.user.uid, "LinkRequest_Sent": false, "Email":email]) { (error) in
                                     
                                     if error != nil {
                                         self.showError("User data could not be saved")
                                     }
                                 }
+                                
+                                //self.sendVerificationMail()
                                 //transition to home screen
-                                self.transitionToHome()
+                                self.transitionToLogin()
                             }
                         }
                     }))
@@ -125,14 +127,16 @@ class SignUpViewController: UIViewController {
                                 //user created successfully, storing first and last name
                                 let db = Firestore.firestore()
                                 
-                                db.collection("users").addDocument(data: ["first_name":firstName, "last_name":lastName, "account_type":accountType, "uid": result!.user.uid]) { (error) in
+                                db.collection("users").addDocument(data: ["First_Name":firstName, "Last_Name":lastName, "Account_Type":accountType, "Phone":phone, "uid": result!.user.uid, "Email":email]) { (error) in
                                     
                                     if error != nil {
                                         self.showError("User data could not be saved")
                                     }
                                 }
+                                
+                                //self.sendVerificationMail()
                                 //transition to home screen
-                                self.transitionToHome()
+                                self.transitionToLogin()
                             }
                         }
                     }))
@@ -142,16 +146,31 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    private var authUser : User? {
+        return Auth.auth().currentUser
+    }
+
+    public func sendVerificationMail() {
+        if self.authUser != nil && !self.authUser!.isEmailVerified {
+            self.authUser!.sendEmailVerification(completion: { (error) in
+                // Notify the user that the mail has sent or couldn't because of an error.
+            })
+        }
+        else {
+            // Either the user is not available, or the user is already verified.
+        }
+    }
+    
     //error message display
     func showError(_ message : String) {
         errorLabel.text = message
         errorLabel.alpha = 1
     }
     
-    func transitionToHome() {
-        let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarController) as? UITabBarController
+    func transitionToLogin() {
+        let landingViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.landingController)
         
-        view.window?.rootViewController = homeViewController
+        view.window?.rootViewController = landingViewController
         view.window?.makeKeyAndVisible()
     }
 }

@@ -11,12 +11,12 @@ import Firebase
 
 class RequestViewController: UIViewController {
     
-    @IBOutlet weak var tennantNameLabel: UILabel!
-    @IBOutlet weak var tennantEmailLabel: UILabel!
+    @IBOutlet weak var tenantNameLabel: UILabel!
+    @IBOutlet weak var tenantEmailLabel: UILabel!
     @IBOutlet weak var propertyAddressLabel: UILabel!
     @IBOutlet weak var postcodeLabel: UILabel!
     @IBOutlet weak var requestDateLabel: UILabel!
-    @IBOutlet weak var acceptTennantButton: UIButton!
+    @IBOutlet weak var acceptTenantButton: UIButton!
     
     var requestID: String?
     var tenantName: String?
@@ -26,21 +26,21 @@ class RequestViewController: UIViewController {
     var tenantEmail: String?
     var landlordEmail: String?
     var propertyID: String?
-    var tennantID: String?
+    var tenantID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tennantNameLabel.text = tenantName
-        tennantEmailLabel.text = tenantEmail
+        tenantNameLabel.text = tenantName
+        tenantEmailLabel.text = tenantEmail
         propertyAddressLabel.text = address
         postcodeLabel.text = postcode
         requestDateLabel.text = date
     }
     
-    @IBAction func acceptTennantTapped(_ sender: Any) {
+    @IBAction func acceptTenantTapped(_ sender: Any) {
         
-        let alert = UIAlertController(title: "Accept new tennant", message: "Are you sure you want to add this tennant to the property they have requested?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Accept new tenant", message: "Are you sure you want to add this tenant to the property they have requested?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(action: UIAlertAction!) in
@@ -59,18 +59,18 @@ class RequestViewController: UIViewController {
                             documentID = document.documentID
                         }
                     }
-                    //add a new region to the "Tennants" array field for that property
+                    //add a new region to the "tenants" array field for that property
                     propertyRef.document(documentID!).updateData([
-                        "Tennants": FieldValue.arrayUnion([self.tennantID!])
+                        "Tenants": FieldValue.arrayUnion([self.tenantID!])
                     ])
                     
-                    //remove tennant from the property requests array
+                    //remove tenant from the property requests array
                     propertyRef.document(documentID!).updateData([
-                        "Requests": FieldValue.arrayRemove([self.tennantID!])
+                        "Requests": FieldValue.arrayRemove([self.tenantID!])
                     ])
                     
                 }
-                let userRef = db.collection("users").document(self.tennantID ?? "")
+                let userRef = db.collection("users").document(self.tenantID ?? "")
 
                 // Add the "Assigned_Property" field to the user document
                 userRef.updateData([

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Tennant: NSObject {
+class Tenant: NSObject {
 
     var name: String?
     var email: String?

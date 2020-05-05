@@ -22,10 +22,10 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var countyTextField: UITextField!
     @IBOutlet weak var postcodeTextField: UITextField!
     @IBOutlet weak var linkPropertyTitleLabel: UILabel!
-    @IBOutlet weak var tennantRequestTitle: UILabel!
+    @IBOutlet weak var tenantRequestTitle: UILabel!
     @IBOutlet weak var createPropertyButton: UIButton!
     @IBOutlet weak var addPropertyButton: UIBarButtonItem!
-    @IBOutlet weak var tennantRequestTableView: UITableView!
+    @IBOutlet weak var tenantRequestTableView: UITableView!
     @IBOutlet weak var linkPropertyButton: UIButton!
     @IBOutlet weak var submitDetailsButton: UIButton!
     
@@ -43,7 +43,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
     var userDocID: String?
     var userAccountID: String?
     var myIndex = 0
-    var tennantName: String?
+    var tenantName: String?
     var firstname: String?
     
     let today = Date()
@@ -53,16 +53,16 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         portfolioTableView.register(ReportCell.self, forCellReuseIdentifier: cellID)
-        tennantRequestTableView.register(ReportCell.self, forCellReuseIdentifier: cellID)
+        tenantRequestTableView.register(ReportCell.self, forCellReuseIdentifier: cellID)
         portfolioTableView.delegate = self
         portfolioTableView.dataSource = self
         portfolioTableView.rowHeight = UITableView.automaticDimension
         portfolioTableView.tableFooterView = UIView()
         
-        tennantRequestTableView.delegate = self
-        tennantRequestTableView.dataSource = self
-        tennantRequestTableView.rowHeight = UITableView.automaticDimension
-        tennantRequestTableView.tableFooterView = UIView()
+        tenantRequestTableView.delegate = self
+        tenantRequestTableView.dataSource = self
+        tenantRequestTableView.rowHeight = UITableView.automaticDimension
+        tenantRequestTableView.tableFooterView = UIView()
         
     }
     
@@ -88,10 +88,10 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                     self.userDocID = document.documentID
                     self.firstname = document["First_Name"] as? String
                     let lastname = document["Last_Name"] as? String
-                    self.tennantName = self.firstname! + " " + lastname!
+                    self.tenantName = self.firstname! + " " + lastname!
                     let propertyID = data["Assigned_Property"] as? String
                     
-                    //checking whether tennant or landlord user
+                    //checking whether tenant or landlord user
                     if self.userType == 0 && self.linkRequest == false {
                         self.portfolioTitleLabel.isHidden = false
                         self.portfolioTitleLabel.text = "Your property"
@@ -105,7 +105,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                         self.linkRequestSent()
                     }
                     else if self.userType == 0 && self.linkRequest == true && propertyID != nil {
-                        self.loadAssignedTennant()
+                        self.loadAssignedTenant()
                     }
                     else {
                         self.getLandlordProperties()
@@ -117,15 +117,15 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func loadAssignedTennant() {
+    func loadAssignedTenant() {
         self.portfolioTitleLabel.isHidden = false
         self.portfolioTitleLabel.text = "Hello, " + (firstname ?? "")
         self.landlordExplationLabel.isHidden = false
         self.landlordExplationLabel.text = "Here you can view all the details about your property"
-        self.tennantRequestTitle.isHidden = false
-        self.tennantRequestTitle.text = "Property Noticeboard"
-        self.tennantRequestTableView.isHidden = false
-        self.tennantRequestTableView.reloadData()
+        self.tenantRequestTitle.isHidden = false
+        self.tenantRequestTitle.text = "Property Noticeboard"
+        self.tenantRequestTableView.isHidden = false
+        self.tenantRequestTableView.reloadData()
 
     }
     
@@ -146,7 +146,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                         let postcode = data["Postcode"] as? String
                         let landlordID = data["LandlordID"] as? String
                         let propertyID = data["PropertyID"] as? String
-                        let tennants = data["Tennants"] as? Array<String>
+                        let tenants = data["Tenants"] as? Array<String>
                         
                         let newProperty = Property()
                         newProperty.address = address
@@ -155,7 +155,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                         newProperty.postcode = postcode
                         newProperty.landlordID = landlordID
                         newProperty.propertyID = propertyID
-                        newProperty.tennants = tennants ?? ["No tennants"]
+                        newProperty.tenants = tenants ?? ["No tenants"]
                         
                         self.properties.append(newProperty)
                         
@@ -170,13 +170,12 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                         self.portfolioTableView.isHidden = false
                         self.portfolioTableView.isUserInteractionEnabled = true
                         self.addPropertyNavButton.image = .add
-                        self.tennantRequestTitle.isHidden = false
-                        self.tennantRequestTableView.isHidden = false
+                        self.tenantRequestTitle.isHidden = false
+                        self.tenantRequestTableView.isHidden = false
                     }
                 }
                 else {
                     self.portfolioTitleLabel.isHidden = false
-                    //self.navigationItem.rightBarButtonItem?.image = .add
                     self.portfolioTitleLabel.text = "Your portfolio"
                     self.landlordExplationLabel.isHidden = false
                     self.portfolioTitleLabel.isHidden = false
@@ -186,7 +185,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                     self.postcodeTextField.isHidden = false
                     self.createPropertyButton.isHidden = false
                     self.linkPropertyTitleLabel.text = "Link a new property"
-                    self.landlordExplationLabel.text = "You do not have any properties linked to this account. Create a property below to add one to your portfolio. You can then add tenants to each property by sharing the unique property ID and accepting tennant requests."
+                    self.landlordExplationLabel.text = "You do not have any properties linked to this account. Create a property below to add one to your portfolio. You can then add tenants to each property by sharing the unique property ID and accepting tenant requests."
                 }
                 
             }
@@ -210,30 +209,30 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                 if snapshot!.count > 0 {
                     for document in snapshot!.documents {
                         let data = document.data()
-                        let tennantEmail = data["Tennant_Email"] as? String
+                        let tenantEmail = data["Tenant_Email"] as? String
                         let address = data["Address"] as? String
                         let postcode = data["Postcode"] as? String
                         let landlordEmail = data["Landlord_Email"] as? String
                         let requestID = document.documentID
-                        let tennantName = data["Tennant_Name"] as? String
+                        let tenantName = data["Tenant_Name"] as? String
                         let propertyID = data["PropertyID"] as? String
                         let requestDate = data["Date"] as? String
-                        let tennantID = data["TennantID"] as? String
+                        let tenantID = data["TenantID"] as? String
                         
                         let newRequest = Request()
-                        newRequest.tenantEmail = tennantEmail
+                        newRequest.tenantEmail = tenantEmail
                         newRequest.address = address
                         newRequest.postcode = postcode
                         newRequest.landlordEmail = landlordEmail
-                        newRequest.tenantID = tennantID
+                        newRequest.tenantID = tenantID
                         newRequest.requestID = requestID
-                        newRequest.tennantName = tennantName
+                        newRequest.tenantName = tenantName
                         newRequest.date = requestDate
                         newRequest.propertyID = propertyID
                         self.requests.append(newRequest)
                     }
                 }
-                self.tennantRequestTableView.reloadData()
+                self.tenantRequestTableView.reloadData()
                 
             }
         }
@@ -289,7 +288,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                     let date = self.dateFormatter.string(from: self.today)
                     
                     let db = Firestore.firestore()
-                    db.collection("requests").addDocument(data: ["TennantID":self.userAccountID!, "Tennant_Email" : self.currentUser!.email!, "Address": address ?? "Address could not be saved", "LandlordID": landlordID ?? "Could not retrieve landlord ID","PropertyID" : linkingInput, "Postcode" : postcode ?? "Postcode could not be saved", "Tennant_Name" : self.tennantName ?? "Could not retrieve tennant name","Landlord_Email" : landlordEmail ?? "Landlord email could not be saved", "Date": date]) { (error) in
+                    db.collection("requests").addDocument(data: ["TenantID":self.userAccountID!, "Tenant_Email" : self.currentUser!.email!, "Address": address ?? "Address could not be saved", "LandlordID": landlordID ?? "Could not retrieve landlord ID","PropertyID" : linkingInput, "Postcode" : postcode ?? "Postcode could not be saved", "Tenant_Name" : self.tenantName ?? "Could not retrieve tenant name","Landlord_Email" : landlordEmail ?? "Landlord email could not be saved", "Date": date]) { (error) in
                         if error != nil {
                             print(error!)
                         }
@@ -330,7 +329,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
         dateFormatter.dateStyle = .short
         let date = dateFormatter.string(from: today)
         
-        db.collection("requests").addDocument(data: ["TennantID":userAccountID!, "Tennant_Email" : currentUser!.email!, "Address": address, "Postcode" : postcode, "Landlord_Email" : email, "Date": date]) { (error) in
+        db.collection("requests").addDocument(data: ["TenantID":userAccountID!, "Tenant_Email" : currentUser!.email!, "Address": address, "Postcode" : postcode, "Landlord_Email" : email, "Date": date]) { (error) in
             if error != nil {
                 print(error!)
             }
@@ -392,7 +391,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                 //user created successfully, storing first and last name
                 let db = Firestore.firestore()
                 
-                db.collection("properties").addDocument( data: ["Address":address, "City":city, "County":county, "Postcode":postcode, "PropertyID":propertyID, "Landlord_Email":email!,"LandlordID":Auth.auth().currentUser!.uid,"Tennants":[]]) { (error) in
+                db.collection("properties").addDocument( data: ["Address":address, "City":city, "County":county, "Postcode":postcode, "PropertyID":propertyID, "Landlord_Email":email!,"LandlordID":Auth.auth().currentUser!.uid,"Tenants":[]]) { (error) in
                     
                     if error != nil {
                         let alert = UIAlertController(title: "Error", message: "Could not create new property", preferredStyle: .alert)
@@ -422,8 +421,8 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                         self.getLandlordProperties()
                         self.portfolioTableView.isHidden = false
                         self.portfolioTitleLabel.text = "Your portfolio"
-                        self.tennantRequestTitle.isHidden = false
-                        self.tennantRequestTableView.isHidden = false
+                        self.tenantRequestTitle.isHidden = false
+                        self.tenantRequestTableView.isHidden = false
                         
                     }
                 }
@@ -467,7 +466,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                 return 1
             }
         }
-        else if tableView == tennantRequestTableView{
+        else if tableView == tenantRequestTableView{
             
             if userType == 1 {
                 if requests.count > 0 {
@@ -490,7 +489,8 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        
+        cell.backgroundColor = UIColor.tertiarySystemGroupedBackground
+
         if tableView == portfolioTableView {
             if properties.count <= 0 {
                 portfolioTableView.allowsSelection = false
@@ -500,29 +500,32 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                 let property = properties[indexPath.row]
                 portfolioTableView.allowsSelection = true
                 cell.textLabel?.text = property.address
+
             }
         }
         
-        if tableView == tennantRequestTableView {
+        if tableView == tenantRequestTableView {
             
             if userType == 1 {
                 if requests.count <= 0 {
                     cell.textLabel?.text = "You currently have no requests"
                     cell.detailTextLabel?.isHidden = true
-                    tennantRequestTableView.allowsSelection = false
-                    
+                    tenantRequestTableView.allowsSelection = false
+
                 }
                 else {
                     let request = requests[indexPath.row]
-                    tennantRequestTableView.allowsSelection = true
-                    cell.textLabel?.text = request.tennantName
+                    tenantRequestTableView.allowsSelection = true
+                    cell.textLabel?.text = request.tenantName
                     cell.detailTextLabel?.text = request.address
+
                 }
             }
             
             else if userType == 0 {
-                tennantRequestTableView.allowsSelection = true
+                tenantRequestTableView.allowsSelection = true
                 cell.textLabel?.text = "New notice"
+
             }
             
         }
@@ -539,7 +542,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
             performSegue(withIdentifier: "showProperty", sender: self)
         }
         
-        if tableView == tennantRequestTableView{
+        if tableView == tenantRequestTableView{
             if requests.count > 0 && userType == 1 {
                 performSegue(withIdentifier: "showRequest", sender: self)
             }
@@ -555,21 +558,20 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
             destination.cityText = property.city
             destination.countyText = property.county
             destination.postcodeText = property.postcode
-            destination.propertyIDText = property.propertyID
-            //destination.tennantIDs = property.tennants
+            destination.propertyID = property.propertyID
             
         }
         
         if let destination = segue.destination as? RequestViewController {
             let request = requests[myIndex]
             
-            destination.tenantName = request.tennantName
+            destination.tenantName = request.tenantName
             destination.tenantEmail = request.tenantEmail
             destination.address = request.address
             destination.postcode = request.postcode
             destination.date = request.date
             destination.propertyID = request.propertyID
-            destination.tennantID  = request.tenantID
+            destination.tenantID  = request.tenantID
             destination.requestID = request.requestID
         }
     }

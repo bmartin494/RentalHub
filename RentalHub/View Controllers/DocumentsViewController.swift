@@ -110,16 +110,19 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        
+        cell.backgroundColor = UIColor.tertiarySystemGroupedBackground
+
         if tableView == reportsTableView {
             let report = reports[indexPath.row]
             if reports.count <= 0 {
                 reportsTableView.allowsSelection = false
                 cell.textLabel?.text = "No reports stored"
+
             }
             else {
                 cell.textLabel?.text = report.issue
                 cell.detailTextLabel?.text = report.issueDescription
+
             }
         }
         
@@ -128,11 +131,13 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
                 agreementsTableView.allowsSelection = false
                 cell.textLabel?.text = "No documents stored"
                 cell.detailTextLabel?.text = nil
+
             }
             else{
                 let agreement = agreements[indexPath.row]
                 cell.textLabel?.text = agreement
                 cell.detailTextLabel?.text = nil
+
             }
         }
         

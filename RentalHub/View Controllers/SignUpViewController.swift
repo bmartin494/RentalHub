@@ -19,7 +19,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var phoneNumberTxt: UITextField!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var landlordTennantSelector: UISegmentedControl!
+    @IBOutlet weak var landlordTenantSelector: UISegmentedControl!
     
     
     override func viewDidLoad() {
@@ -78,7 +78,7 @@ class SignUpViewController: UIViewController {
                 let email = self.emailTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 let password = self.passwordTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 let phone = self.phoneNumberTxt.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-                let accountType = self.landlordTennantSelector.selectedSegmentIndex
+                let accountType = self.landlordTenantSelector.selectedSegmentIndex
                 
                 if accountType == 0 {
                     let alert = UIAlertController(title: "Account type check", message: "You have chosen to create a 'tenant' user account?", preferredStyle: .alert)

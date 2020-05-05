@@ -17,6 +17,6 @@ class Property: NSObject {
     var landlordID: String?
     var landlordEmail: String?
     var propertyID: String?
-    var tennants = [String]()
+    var tenants = [String]()
     
 }

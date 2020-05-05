@@ -16,53 +16,53 @@ class FullPropertyViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var countyLabel: UILabel!
     @IBOutlet weak var postcodeLabel: UILabel!
     @IBOutlet weak var propertyIDLabel: UILabel!
-    @IBOutlet weak var tennantsTableLabel: UILabel!
-    @IBOutlet weak var tennantsTableView: UITableView!
+    @IBOutlet weak var tenantsTableLabel: UILabel!
+    @IBOutlet weak var tenantsTableView: UITableView!
     @IBOutlet weak var addDocumentsButton: UIBarButtonItem!
-    
-    
+
     let cellID = "cellID"
     var usersCollectionRef = Firestore.firestore().collection("users")
     var addressText: String?
     var cityText: String?
     var countyText: String?
     var postcodeText: String?
-    var propertyIDText: String?
+    var propertyID: String?
     var myIndex = 0
-    var tennantName: String?
-    var tennants = [Tennant]()
+    var tenantName: String?
+    var tenants = [Tenant]()
+    var document = Document()
+    var documentType: Int = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tennantsTableView.register(ReportCell.self, forCellReuseIdentifier: cellID)
+        document.image = nil
+        tenantsTableView.register(ReportCell.self, forCellReuseIdentifier: cellID)
         
-        tennantsTableView.delegate = self
-        tennantsTableView.dataSource = self
-        tennantsTableView.rowHeight = UITableView.automaticDimension
-        tennantsTableView.tableFooterView = UIView()
+        tenantsTableView.delegate = self
+        tenantsTableView.dataSource = self
+        tenantsTableView.rowHeight = UITableView.automaticDimension
+        tenantsTableView.tableFooterView = UIView()
         addressLabel.text = addressText
         cityLabel.text = cityText
         countyLabel.text = countyText
         postcodeLabel.text = postcodeText
-        propertyIDLabel.text = propertyIDText
+        propertyIDLabel.text = propertyID
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
-        self.addDocumentsButton.image = .add
         
-//        let addDocumentButton = UIBarButtonItem(image: UIImage(named: "add"), style: .plain, target: self, action: #selector(addDocumentTapped))
-//        self.navigationItem.rightBarButtonItem  = addDocumentButton
+        self.addDocumentsButton.image = .add
+        documentType = 0
 
-        //self.navigationItem.rightBarButtonItem?.image = .add
         //Checking whether tenant or landlord user
-        usersCollectionRef.whereField("Assigned_Property", isEqualTo: propertyIDText!).getDocuments { (snapshot, error) in
+        usersCollectionRef.whereField("Assigned_Property", isEqualTo: propertyID!).getDocuments { (snapshot, error) in
             if let err = error {
                 debugPrint("Error fetching docs: \(err)")
             }
             else {
+                self.tenants.removeAll()
                 for document in snapshot!.documents {
                     let data = document.data()
                     let firstname = data["First_Name"] as? String
@@ -71,22 +71,53 @@ class FullPropertyViewController: UIViewController, UITableViewDataSource, UITab
                     let email = data["Email"] as? String
                     let phone = data["Phone"] as? String
                     
-                    let newTennant = Tennant()
-                    newTennant.name = name
-                    newTennant.email = email
-                    newTennant.phone = phone
-                    self.tennants.append(newTennant)
+                    let newTenant = Tenant()
+                    newTenant.name = name
+                    newTenant.email = email
+                    newTenant.phone = phone
+                    self.tenants.append(newTenant)
                 }
             }
-            self.tennantsTableView.reloadData()
+            self.tenantsTableView.reloadData()
         }
     }
     
     @IBAction func addDocumentsTapped(_ sender: Any) {
-        print("This works")
+        
+        documentPicker()
+        
     }
     
     
+    func documentPicker() {
+        let imagePicker = UIImagePickerController()
+        
+        let actionSheet = UIAlertController(title: "Post a new property document", message: nil, preferredStyle: .actionSheet)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            actionSheet.addAction(UIAlertAction(title:"Camera", style: .default, handler: { (action:UIAlertAction) in
+                imagePicker.sourceType = .camera
+                self.present(imagePicker, animated: true, completion: nil)
+            }))
+        }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            actionSheet.addAction(UIAlertAction(title:"Photo Library", style: .default, handler: { (action:UIAlertAction) in
+                imagePicker.sourceType = .photoLibrary
+                self.present(imagePicker, animated: true, completion: nil)
+            }))
+        }
+        
+        actionSheet.addAction(UIAlertAction(title: "Create new", style: .default, handler: { (action:UIAlertAction) in
+            self.performSegue(withIdentifier: "addDocument", sender: self)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title:"Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        imagePicker.delegate = self
+        
+    }
     @IBAction func copyIDtapped(_ sender: Any) {
         
         UIPasteboard.general.string = propertyIDLabel.text
@@ -101,8 +132,8 @@ class FullPropertyViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if tennants.count > 0 {
-            return tennants.count
+        if tenants.count > 0 {
+            return tenants.count
         }
         else {
             return 1
@@ -111,18 +142,20 @@ class FullPropertyViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        
-        tennantsTableView.allowsSelection = false
-        if tennants.count <= 0 {
-            cell.textLabel?.text = "You currently have no tennants assigned"
+        cell.backgroundColor = UIColor.tertiarySystemGroupedBackground
+
+        tenantsTableView.allowsSelection = false
+        if tenants.count <= 0 {
+            cell.textLabel?.text = "You currently have no tenants assigned"
             cell.detailTextLabel?.isHidden = true
             
         }
         else {
-            let tennant = tennants[indexPath.row]
-            cell.textLabel?.text = tennant.name
+            let tenant = tenants[indexPath.row]
+            cell.textLabel?.text = tenant.name
             cell.detailTextLabel?.isHidden = false
-            cell.detailTextLabel?.text = (tennant.email ?? "") + "    Phone: " + (tennant.phone ?? "No number available")
+            cell.detailTextLabel?.text = (tenant.email ?? "") + "    Phone: " + (tenant.phone ?? "No number available")
+
         }
         return cell
         
@@ -133,5 +166,36 @@ class FullPropertyViewController: UIViewController, UITableViewDataSource, UITab
         tableView.deselectRow(at: indexPath, animated: true)
         myIndex = indexPath.row
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? AddDocumentViewController {
+            if documentType == 1 {
+                destination.image = document.image
+                destination.documentType = 1
+            }
+            else {
+                destination.documentType = 0
+            }
+            destination.propertyID = propertyID
+            
+        } 
+    }
+    
+    @IBAction func unwindToFullPropertyView( _ seg: UIStoryboardSegue) {}
+
+}
+
+
+extension FullPropertyViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let imageSelected = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            document.image = imageSelected
+            documentType = 1
+            self.performSegue(withIdentifier: "addDocument", sender: self)
+        }
+        picker.dismiss(animated: true, completion: nil)
     }
 }

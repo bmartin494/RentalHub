@@ -46,7 +46,7 @@ class CreatePropertyViewController: UIViewController {
             //user created successfully, storing first and last name
             let db = Firestore.firestore()
             
-            db.collection("properties").addDocument( data: ["Address":address, "City":city, "County":county, "Postcode":postcode, "LandlordID":Auth.auth().currentUser!.uid,"Tennants":[]]) { (error) in
+            db.collection("properties").addDocument( data: ["Address":address, "City":city, "County":county, "Postcode":postcode, "LandlordID":Auth.auth().currentUser!.uid,"Tenants":[]]) { (error) in
                 
                 if error != nil {
                     let alert = UIAlertController(title: "Error", message: "Could not create new property", preferredStyle: .alert)

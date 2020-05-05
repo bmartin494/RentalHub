@@ -12,7 +12,7 @@ class Request: NSObject {
 
     var requestID: String?
     var tenantID: String?
-    var tennantName: String?
+    var tenantName: String?
     var address: String?
     var postcode: String?
     var date: String?

@@ -13,5 +13,6 @@ class Tenant: NSObject {
     var name: String?
     var email: String?
     var phone: String?
+    var tenantDocumentID: String?
     
 }

@@ -32,6 +32,7 @@ class FullPropertyViewController: UIViewController, UITableViewDataSource, UITab
     var tenants = [Tenant]()
     var document = Document()
     var documentType: Int = 0
+    var tenantCount: Int?
     
     
     override func viewDidLoad() {
@@ -70,11 +71,13 @@ class FullPropertyViewController: UIViewController, UITableViewDataSource, UITab
                     let name = firstname! + " " + lastname!
                     let email = data["Email"] as? String
                     let phone = data["Phone"] as? String
-                    
+                    let tenantDocumentID = document.documentID as String
+ 
                     let newTenant = Tenant()
                     newTenant.name = name
                     newTenant.email = email
                     newTenant.phone = phone
+                    newTenant.tenantDocumentID = tenantDocumentID
                     self.tenants.append(newTenant)
                 }
             }
@@ -168,19 +171,54 @@ class FullPropertyViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    //functionality for swipe to delete cell record
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            let alert = UIAlertController(title: "Remove tenant", message: "Are you sure you want to remove this tenant? They will have to request to be linked and approved again to be added back.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(action: UIAlertAction!) in
+                let tenant = self.tenants[indexPath.row]
+
+                self.usersCollectionRef.document(tenant.tenantDocumentID!).updateData([
+                    "Assigned_Property": "",
+                    "LinkRequest_Sent": false,
+                    "LandlordID":""
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+                self.tenants.remove(at: self.myIndex)
+                self.tenantsTableView.reloadData()
+            }))
+
+            self.present(alert, animated: true)
+
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let destination = segue.destination as? AddDocumentViewController {
             if documentType == 1 {
-                destination.image = document.image
+                destination.document.image = document.image
                 destination.documentType = 1
             }
             else {
                 destination.documentType = 0
             }
-            destination.propertyID = propertyID
-            
-        } 
+            destination.document.propertyID = propertyID
+            tenantCount = tenants.count
+            destination.document.signatureCount = tenantCount
+        }
     }
     
     @IBAction func unwindToFullPropertyView( _ seg: UIStoryboardSegue) {}

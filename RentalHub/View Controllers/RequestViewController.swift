@@ -28,6 +28,10 @@ class RequestViewController: UIViewController {
     var propertyID: String?
     var tenantID: String?
     
+    let db = Firestore.firestore()
+    let propertyRef = Firestore.firestore().collection("properties")
+    let userRef = Firestore.firestore().collection("users")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,65 +49,75 @@ class RequestViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(action: UIAlertAction!) in
             
-            var documentID: String?
-            let db = Firestore.firestore()
-            let propertyRef = db.collection("properties")
+            var propertyDocumentID: String?
+            var tenantDocumentID: String?
+
+            self.userRef.whereField("uid", isEqualTo: self.tenantID!).getDocuments { (snapshot, error) in
+            if let err = error {
+                debugPrint("Error fetching docs: \(err)")
+            }
+            else {
+                if snapshot!.count > 0 {
+                    for document in snapshot!.documents {
+                        tenantDocumentID = document.documentID
+                    }
+                    
+                    // Add the "Assigned_Property" field to the user document
+                    self.userRef.document(tenantDocumentID!).updateData(["Assigned_Property": self.propertyID!]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                    }
+                    
+                    //add the "LandlordID" field to the user document
+                    self.userRef.document(tenantDocumentID!).updateData(["LandlordID": Auth.auth().currentUser!.uid]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                    }
+                    
+                    
+                }
+            }}
             
-            propertyRef.whereField("PropertyID", isEqualTo: self.propertyID!).getDocuments { (snapshot, error) in
+            
+            self.db.collection("requests").document(self.requestID!).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+            }
+            
+            self.propertyRef.whereField("PropertyID", isEqualTo: self.propertyID!).getDocuments { (snapshot, error) in
                 if let err = error {
                     debugPrint("Error fetching docs: \(err)")
                 }
                 else {
                     if snapshot!.count > 0 {
                         for document in snapshot!.documents {
-                            documentID = document.documentID
+                            propertyDocumentID = document.documentID
                         }
                     }
                     //add a new region to the "tenants" array field for that property
-                    propertyRef.document(documentID!).updateData([
+                    self.propertyRef.document(propertyDocumentID!).updateData([
                         "Tenants": FieldValue.arrayUnion([self.tenantID!])
                     ])
                     
                     //remove tenant from the property requests array
-                    propertyRef.document(documentID!).updateData([
+                    self.propertyRef.document(propertyDocumentID!).updateData([
                         "Requests": FieldValue.arrayRemove([self.tenantID!])
                     ])
                     
                 }
-                let userRef = db.collection("users").document(self.tenantID ?? "")
-
-                // Add the "Assigned_Property" field to the user document
-                userRef.updateData([
-                    "Assigned_Property": self.propertyID!
-                ]) { err in
-                    if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("Document successfully updated")
-                    }
-                }
+            }
+            self.performSegue(withIdentifier: "unwindToPropertyView", sender: self)
                 
-                //add the "LandlordID" field to the user document
-                userRef.updateData([
-                    "LandlordID": Auth.auth().currentUser!.uid
-                ]) { err in
-                    if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("Document successfully updated")
-                    }
-                }
-
-                
-                db.collection("requests").document(self.requestID!).delete() { err in
-                    if let err = err {
-                        print("Error removing document: \(err)")
-                    } else {
-                        print("Document successfully removed!")
-                    }
-                }
-                self.performSegue(withIdentifier: "unwindToPropertyView", sender: self)
-            }}))
+        }))
         present(alert, animated: true)
         
     }

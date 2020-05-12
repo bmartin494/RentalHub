@@ -12,9 +12,14 @@ class Document: NSObject {
 
     var documentID: String?
     var propertyID: String?
+    var title: String?
     var mainDocument: String?
     var notes: String?
-    var accepted: Bool?
+    var signatureRequired: Bool?
+    var imageURL: String?
     var image: UIImage? = nil
-
+    var date: String?
+    var signatureCount: Int?
+    var deleteCount: Int?
+    var signatures = [String]()
 }

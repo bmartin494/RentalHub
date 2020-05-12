@@ -18,14 +18,10 @@ class AddDocumentViewController: UIViewController {
     @IBOutlet weak var viewDocumentButton: UIButton!
     @IBOutlet weak var signatureSwitch: UISwitch!
     @IBOutlet weak var documentNameTextField: UITextField!
-    
-    let today = Date()
-    let dateFormatter = DateFormatter()
+
     let db = Firestore.firestore()
+    var document = Document()
     var image: UIImage? = nil
-    var downloadString: String?
-    var propertyID: String?
-    var documentID: String?
     var documentType: Int?
     
     
@@ -115,7 +111,7 @@ class AddDocumentViewController: UIViewController {
         
         if self.imageView.image != nil {
             let storageRef = Storage.storage().reference(forURL: "gs://rentalhub-82cfc.appspot.com")
-            let reportRef = storageRef.child("documents").child("properties").child(self.propertyID!)
+            let reportRef = storageRef.child("documents").child("properties").child(self.document.propertyID!)
             
             reportRef.putData(imageData!, metadata: metaData, completion: { (storageMetaData, error) in
                 if error != nil {
@@ -134,17 +130,31 @@ class AddDocumentViewController: UIViewController {
             self.uploadDatabaseInfo(downloadStringURL: "nil")
         }
         self.documentWriterTextView.text = ""
+        self.documentNameTextField.text = ""
         self.infoTextView.text = "Add any notes/instructions/questions relating to the document in here."
         self.image = nil
         let alert = UIAlertController(title: "Document posted successfully!", message: "Your tennant will be recieve this document on their property page. You can view documents you have posted for all your properties in the 'Documents' tab.", preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(action: UIAlertAction!) in
+            
+            self.performSegue(withIdentifier: "unwindToFullProperty", sender: self)
+        }))
+    }
+    
+    
+    func countTenants() {
         
-        self.present(alert, animated: true)
+        
     }
     
     //upload report data to database
     func uploadDatabaseInfo(downloadStringURL: String) {
+        
+        
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy"
+        let formattedDate = dateFormatter.string(from: today)
         
         let mainDocument = documentWriterTextView.text
         let name = documentNameTextField.text
@@ -154,10 +164,8 @@ class AddDocumentViewController: UIViewController {
         }
         let signature = signatureSwitch.isOn
         
-        dateFormatter.dateStyle = .short
-        let date = dateFormatter.string(from: today)
         
-        db.collection("documents").addDocument(data: ["PropertyID": propertyID!, "Name" : name!,"Body": mainDocument ?? "","Notes": notes ?? "","Date": date,"Require_Signature" : signature, "ImageURL": downloadStringURL])
+        db.collection("documents").addDocument(data: [ "PropertyID": document.propertyID!, "Title" : name!,"Body": mainDocument ?? "","Notes": notes ?? "","Date": formattedDate,"Require_Signature" : signature, "ImageURL": downloadStringURL,"Signature_Count": document.signatureCount!, "Signatures":[]])
         { err in
             if let err = err {
                 print("Error writing document: \(err)")

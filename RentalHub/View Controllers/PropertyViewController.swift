@@ -28,15 +28,24 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tenantRequestTableView: UITableView!
     @IBOutlet weak var linkPropertyButton: UIButton!
     @IBOutlet weak var submitDetailsButton: UIButton!
+    @IBOutlet weak var rentTextField: UITextField!
+    @IBOutlet weak var dueDateTextField: UITextField!
+    @IBOutlet weak var rentLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var dueDateTitle: UILabel!
+    @IBOutlet weak var rentTitle: UILabel!
+    @IBOutlet weak var rentStackView: UIStackView!
+    @IBOutlet weak var dueDateStackView: UIStackView!
     
     
     
     var propertiesCollectionRef = Firestore.firestore().collection("properties")
+    var documentsCollectionRef = Firestore.firestore().collection("documents")
     var usersCollectionRef = Firestore.firestore().collection("users")
     var requestsCollectionRef = Firestore.firestore().collection("requests")
     var properties = [Property]()
     var requests = [Request]()
-    var notices = ["test1", "test2"]
+    var documents = [Document]()
     var currentUser = Auth.auth().currentUser
     var userType: Int?
     var linkRequest: Bool? = false
@@ -45,9 +54,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
     var myIndex = 0
     var tenantName: String?
     var firstname: String?
-    
-    let today = Date()
-    let dateFormatter = DateFormatter()
+    var propertyID: String?
     
     
     override func viewDidLoad() {
@@ -74,6 +81,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func checkUserType() {
+        
         //Checking whether tenant or landlord user
         usersCollectionRef.whereField("uid", isEqualTo: currentUser!.uid).getDocuments { (snapshot, error) in
             if let err = error {
@@ -89,7 +97,7 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                     self.firstname = document["First_Name"] as? String
                     let lastname = document["Last_Name"] as? String
                     self.tenantName = self.firstname! + " " + lastname!
-                    let propertyID = data["Assigned_Property"] as? String
+                    self.propertyID = data["Assigned_Property"] as? String
                     
                     //checking whether tenant or landlord user
                     if self.userType == 0 && self.linkRequest == false {
@@ -101,10 +109,11 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                         self.addressTextField.placeholder = "Landlord email / property ID"
                         self.linkPropertyButton.isHidden = false
                     }
-                    else if self.userType == 0 && self.linkRequest == true && propertyID == nil {
+                    else if self.userType == 0 && self.linkRequest == true && self.propertyID == "" {
                         self.linkRequestSent()
                     }
-                    else if self.userType == 0 && self.linkRequest == true && propertyID != nil {
+                    else if self.userType == 0 && self.linkRequest == true && self.propertyID != "" {
+                        self.getPropertyDocuments()
                         self.loadAssignedTenant()
                     }
                     else {
@@ -117,16 +126,85 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    
     func loadAssignedTenant() {
+        
+        var rent: String?
+        var dueDate: String?
+        
+        propertiesCollectionRef.whereField("PropertyID", isEqualTo: propertyID!).getDocuments { (snapshot, error) in
+        if let err = error {
+            debugPrint("Error fetching docs: \(err)")
+        }
+        else {
+            for document in snapshot!.documents {
+                let data = document.data()
+                rent = data["Rent"] as? String
+                dueDate = data["Due_Date"] as? String
+                
+            }
+            
+            self.rentLabel.text = rent
+            self.dueDateLabel.text = dueDate
+
+        }}
+        
         self.portfolioTitleLabel.isHidden = false
         self.portfolioTitleLabel.text = "Hello, " + (firstname ?? "")
         self.landlordExplationLabel.isHidden = false
-        self.landlordExplationLabel.text = "Here you can view all the details about your property"
+        self.landlordExplationLabel.text = "Property details"
         self.tenantRequestTitle.isHidden = false
-        self.tenantRequestTitle.text = "Property Noticeboard"
+        self.tenantRequestTitle.text = "Property noticeboard"
+        
         self.tenantRequestTableView.isHidden = false
         self.tenantRequestTableView.reloadData()
+        self.rentStackView.isHidden = false
+        self.dueDateStackView.isHidden = false
 
+    }
+    
+    
+    func getPropertyDocuments() {
+        
+        
+        documentsCollectionRef.whereField("PropertyID", isEqualTo: propertyID!).getDocuments { (snapshot, error) in
+            if let err = error {
+                debugPrint("Error fetching docs: \(err)")
+            }
+            else {
+                self.documents.removeAll()
+                if snapshot!.count > 0 {
+                    for document in snapshot!.documents {
+                        let data = document.data()
+                        let documentID = document.documentID as String
+                        let propertyID = data["PropertyID"] as? String
+                        let docTitle = data["Title"] as? String
+                        let mainDocument = data["Body"] as? String
+                        let notes = data["Notes"] as? String
+                        let date = data["Date"] as? String
+                        let signatureCount = data["Signature_Count"] as? Int
+                        let signatures = data["Signatures"] as? Array<String>
+                        let signature = data["Require_Signature"] as? Bool
+                        let imageURL = data["ImageURL"] as? String
+                        
+                        let newDocument = Document()
+                        newDocument.documentID = documentID
+                        newDocument.propertyID = propertyID
+                        newDocument.title = docTitle
+                        newDocument.mainDocument = mainDocument
+                        newDocument.notes = notes
+                        newDocument.date = date
+                        newDocument.signatureCount = signatureCount
+                        newDocument.signatures = signatures ?? []
+                        newDocument.signatureRequired = signature
+                        newDocument.imageURL = imageURL
+                        
+                        self.documents.append(newDocument)
+                    }
+                    self.tenantRequestTableView.reloadData()
+                }
+            }
+        }
     }
     
     func getLandlordProperties() {
@@ -146,6 +224,8 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                         let postcode = data["Postcode"] as? String
                         let landlordID = data["LandlordID"] as? String
                         let propertyID = data["PropertyID"] as? String
+                        let rent = data["Rent"] as? String
+                        let dueDate = data["Due_Date"] as? String
                         let tenants = data["Tenants"] as? Array<String>
                         
                         let newProperty = Property()
@@ -153,9 +233,11 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                         newProperty.city = city
                         newProperty.county = county
                         newProperty.postcode = postcode
+                        newProperty.dueDate = dueDate
+                        newProperty.rent = rent
                         newProperty.landlordID = landlordID
                         newProperty.propertyID = propertyID
-                        newProperty.tenants = tenants ?? ["No tenants"]
+                        newProperty.tenants = tenants ?? []
                         
                         self.properties.append(newProperty)
                         
@@ -175,8 +257,8 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                     }
                 }
                 else {
-                    self.portfolioTitleLabel.isHidden = false
                     self.portfolioTitleLabel.text = "Your portfolio"
+                    self.portfolioTitleLabel.isHidden = false
                     self.landlordExplationLabel.isHidden = false
                     self.portfolioTitleLabel.isHidden = false
                     self.addressTextField.isHidden = false
@@ -184,6 +266,8 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                     self.countyTextField.isHidden = false
                     self.postcodeTextField.isHidden = false
                     self.createPropertyButton.isHidden = false
+                    self.rentTextField.isHidden = false
+                    self.dueDateTextField.isHidden = false
                     self.linkPropertyTitleLabel.text = "Link a new property"
                     self.landlordExplationLabel.text = "You do not have any properties linked to this account. Create a property below to add one to your portfolio. You can then add tenants to each property by sharing the unique property ID and accepting tenant requests."
                 }
@@ -264,6 +348,8 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
         let emailCheck = isValidEmail(linkingInput)
         let propertyIDCheck = isValidPropertyID(linkingInput)
         
+        
+        //if tenant provides property ID for linking
         if propertyIDCheck == true {
             
             propertiesCollectionRef.whereField("PropertyID", isEqualTo: linkingInput).getDocuments { (snapshot, error) in
@@ -284,11 +370,13 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                     self.propertiesCollectionRef.document(documentID!).updateData([
                         "Requests": FieldValue.arrayUnion([self.currentUser!.uid])])
                     
-                    self.dateFormatter.dateStyle = .short
-                    let date = self.dateFormatter.string(from: self.today)
+                    let today = Date()
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd.MM.yy"
+                    let formattedDate = dateFormatter.string(from: today)
                     
                     let db = Firestore.firestore()
-                    db.collection("requests").addDocument(data: ["TenantID":self.userAccountID!, "Tenant_Email" : self.currentUser!.email!, "Address": address ?? "Address could not be saved", "LandlordID": landlordID ?? "Could not retrieve landlord ID","PropertyID" : linkingInput, "Postcode" : postcode ?? "Postcode could not be saved", "Tenant_Name" : self.tenantName ?? "Could not retrieve tenant name","Landlord_Email" : landlordEmail ?? "Landlord email could not be saved", "Date": date]) { (error) in
+                    db.collection("requests").addDocument(data: ["TenantID":self.userAccountID!, "Tenant_Email" : self.currentUser!.email!, "Address": address ?? "Address could not be saved", "LandlordID": landlordID ?? "Could not retrieve landlord ID","PropertyID" : linkingInput, "Postcode" : postcode ?? "Postcode could not be saved", "Tenant_Name" : self.tenantName ?? "Could not retrieve tenant name","Landlord_Email" : landlordEmail ?? "Landlord email could not be saved", "Date": formattedDate]) { (error) in
                         if error != nil {
                             print(error!)
                         }
@@ -326,10 +414,12 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
         let address = self.cityTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let postcode = self.postcodeTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        dateFormatter.dateStyle = .short
-        let date = dateFormatter.string(from: today)
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy"
+        let formattedDate = dateFormatter.string(from: today)
         
-        db.collection("requests").addDocument(data: ["TenantID":userAccountID!, "Tenant_Email" : currentUser!.email!, "Address": address, "Postcode" : postcode, "Landlord_Email" : email, "Date": date]) { (error) in
+        db.collection("requests").addDocument(data: ["TenantID":userAccountID!, "Tenant_Email" : currentUser!.email!, "Address": address, "Postcode" : postcode, "Landlord_Email" : email, "Date": formattedDate]) { (error) in
             if error != nil {
                 print(error!)
             }
@@ -388,10 +478,12 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                 let county = self.countyTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 let postcode = self.postcodeTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 let email = Auth.auth().currentUser!.email
+                let rent = self.rentTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let dueDate = self.dueDateTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 //user created successfully, storing first and last name
                 let db = Firestore.firestore()
                 
-                db.collection("properties").addDocument( data: ["Address":address, "City":city, "County":county, "Postcode":postcode, "PropertyID":propertyID, "Landlord_Email":email!,"LandlordID":Auth.auth().currentUser!.uid,"Tenants":[]]) { (error) in
+                db.collection("properties").addDocument( data: ["Address":address, "City":city, "County":county, "Postcode":postcode, "PropertyID":propertyID, "Landlord_Email":email!,"LandlordID":Auth.auth().currentUser!.uid,"Rent":rent,"Due_Date":dueDate,"Tenants":[]]) { (error) in
                     
                     if error != nil {
                         let alert = UIAlertController(title: "Error", message: "Could not create new property", preferredStyle: .alert)
@@ -418,6 +510,9 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                         self.postcodeTextField.isHidden = true
                         self.createPropertyButton.isHidden = true
                         self.landlordExplationLabel.isHidden = true
+                        self.rentTextField.isHidden = true
+                        self.dueDateTextField.isHidden = true
+            
                         self.getLandlordProperties()
                         self.portfolioTableView.isHidden = false
                         self.portfolioTitleLabel.text = "Your portfolio"
@@ -477,7 +572,12 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
             }
             else {
-                return notices.count
+                if documents.count > 0{
+                    return documents.count
+                }
+                else {
+                    return 1
+                }
             }
         }
         else {
@@ -523,8 +623,18 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             
             else if userType == 0 {
-                tenantRequestTableView.allowsSelection = true
-                cell.textLabel?.text = "New notice"
+                if documents.count <= 0 {
+                    cell.textLabel?.text = "You currently have no documents"
+                    cell.detailTextLabel?.isHidden = true
+                    tenantRequestTableView.allowsSelection = false
+                }
+                else {
+                    let document = documents[indexPath.row]
+                    tenantRequestTableView.allowsSelection = true
+                    cell.textLabel?.text = document.title
+                    cell.detailTextLabel?.isHidden = false
+                    cell.detailTextLabel?.text = document.date
+                }
 
             }
             
@@ -545,6 +655,10 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
         if tableView == tenantRequestTableView{
             if requests.count > 0 && userType == 1 {
                 performSegue(withIdentifier: "showRequest", sender: self)
+            }
+            
+            if documents.count > 0 && userType == 0 {
+                performSegue(withIdentifier: "showFullDocumentTenant", sender: self)
             }
         }
     }
@@ -574,6 +688,25 @@ class PropertyViewController: UIViewController, UITableViewDataSource, UITableVi
             destination.tenantID  = request.tenantID
             destination.requestID = request.requestID
         }
+        
+        if let destination = segue.destination as? FullDocumentViewController {
+            let document = documents[myIndex]
+            
+            destination.document.documentID = document.documentID
+            destination.document.propertyID = document.propertyID
+            destination.document.title = document.title
+            destination.document.mainDocument = document.mainDocument
+            destination.document.notes = document.notes
+            destination.document.date = document.date
+            destination.document.signatures = document.signatures
+            if document.imageURL != nil {
+                destination.document.imageURL = document.imageURL
+            }
+            destination.document.signatureCount = document.signatureCount
+            destination.document.signatureRequired = document.signatureRequired
+            
+        }
+        
     }
     
     

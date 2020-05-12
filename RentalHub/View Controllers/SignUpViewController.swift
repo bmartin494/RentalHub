@@ -96,7 +96,7 @@ class SignUpViewController: UIViewController {
                                 //user created successfully, storing first and last name
                                 let db = Firestore.firestore()
                                 
-                                db.collection("users").addDocument(data: ["First_Name":firstName, "Last_Name":lastName, "Account_Type":accountType, "Phone":phone,"uid": result!.user.uid, "LinkRequest_Sent": false, "Email":email]) { (error) in
+                                db.collection("users").addDocument(data: ["First_Name":firstName, "Last_Name":lastName, "Account_Type":accountType, "Phone":phone,"uid": result!.user.uid, "LinkRequest_Sent": false,"Assigned_Property": "","LandlordID":"", "Email":email]) { (error) in
                                     
                                     if error != nil {
                                         self.showError("User data could not be saved")

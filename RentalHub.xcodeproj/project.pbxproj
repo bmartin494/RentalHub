@@ -18,6 +18,8 @@
 		8F06123723C4D67400C44843 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F06123523C4D67400C44843 /* GoogleService-Info.plist */; };
 		8F32787F2424FC0C0002318C /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F32787E2424FC0C0002318C /* DocumentsViewController.swift */; };
 		8F327884242510A00002318C /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F327883242510A00002318C /* Report.swift */; };
+		8F3722A824623E5100E26DAF /* FullDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3722A724623E5100E26DAF /* FullDocumentViewController.swift */; };
+		8F3722AA2468F29800E26DAF /* SignedDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3722A92468F29800E26DAF /* SignedDocumentViewController.swift */; };
 		8F37A78E24041864007EFA33 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F37A78D24041864007EFA33 /* Utilities.swift */; };
 		8F37C5AC24069A22006FAAEA /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F37C5AB24069A22006FAAEA /* ReportViewController.swift */; };
 		8F5E509024474D9E001AFAE1 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E508F24474D9E001AFAE1 /* Property.swift */; };
@@ -71,6 +73,8 @@
 		8F06123523C4D67400C44843 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F32787E2424FC0C0002318C /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
 		8F327883242510A00002318C /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		8F3722A724623E5100E26DAF /* FullDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDocumentViewController.swift; sourceTree = "<group>"; };
+		8F3722A92468F29800E26DAF /* SignedDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedDocumentViewController.swift; sourceTree = "<group>"; };
 		8F37A78D24041864007EFA33 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8F37C5AB24069A22006FAAEA /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		8F5E508F24474D9E001AFAE1 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 				8FBAA42D245B28D400B68373 /* RequestViewController.swift */,
 				8FBAA431245F81DB00B68373 /* AddDocumentViewController.swift */,
 				8FBAA4352460C07F00B68373 /* ViewDocumentViewController.swift */,
+				8F3722A724623E5100E26DAF /* FullDocumentViewController.swift */,
+				8F3722A92468F29800E26DAF /* SignedDocumentViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -413,12 +419,14 @@
 				8F06121823C4D61B00C44843 /* LandingViewController.swift in Sources */,
 				8F9C4D72243270CB00481C2B /* AccountViewController.swift in Sources */,
 				8F06121423C4D61B00C44843 /* AppDelegate.swift in Sources */,
+				8F3722AA2468F29800E26DAF /* SignedDocumentViewController.swift in Sources */,
 				8FC4B82A242944F50055E13B /* FullReportViewController.swift in Sources */,
 				8FBAA43424608B2700B68373 /* Document.swift in Sources */,
 				8F5E5098244CE304001AFAE1 /* FullPropertyViewController.swift in Sources */,
 				8F06121623C4D61B00C44843 /* SceneDelegate.swift in Sources */,
 				8F5E50922447538D001AFAE1 /* ReportCell.swift in Sources */,
 				8F9D18AF23FBFB9C0071FC15 /* HomeViewController.swift in Sources */,
+				8F3722A824623E5100E26DAF /* FullDocumentViewController.swift in Sources */,
 				8F9C4D742432BEB800481C2B /* PropertyViewController.swift in Sources */,
 				8F32787F2424FC0C0002318C /* DocumentsViewController.swift in Sources */,
 				8FBAA432245F81DB00B68373 /* AddDocumentViewController.swift in Sources */,

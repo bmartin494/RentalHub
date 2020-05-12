@@ -16,6 +16,8 @@ class CreatePropertyViewController: UIViewController {
     @IBOutlet weak var countyTextField: UITextField!
     @IBOutlet weak var postcodeTextField: UITextField!
     @IBOutlet weak var createPropertyButton: UIButton!
+    @IBOutlet weak var dueDateTextField: UITextField!
+    @IBOutlet weak var rentTextField: UITextField!
     
     
     override func viewDidLoad() {
@@ -42,11 +44,14 @@ class CreatePropertyViewController: UIViewController {
             let city = self.cityTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let county = self.countyTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let postcode = self.postcodeTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let rent = self.rentTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let dueDate = self.dueDateTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+
             
             //user created successfully, storing first and last name
             let db = Firestore.firestore()
             
-            db.collection("properties").addDocument( data: ["Address":address, "City":city, "County":county, "Postcode":postcode, "LandlordID":Auth.auth().currentUser!.uid,"Tenants":[]]) { (error) in
+            db.collection("properties").addDocument( data: ["Address":address, "City":city, "County":county, "Postcode":postcode, "LandlordID":Auth.auth().currentUser!.uid,"Rent":rent, "Due_Date":dueDate,"Tenants":[]]) { (error) in
                 
                 if error != nil {
                     let alert = UIAlertController(title: "Error", message: "Could not create new property", preferredStyle: .alert)
@@ -75,7 +80,7 @@ class CreatePropertyViewController: UIViewController {
         if addressTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             countyTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            postcodeTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            postcodeTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || dueDateTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || rentTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             
             return "Fields incomplete"
         }

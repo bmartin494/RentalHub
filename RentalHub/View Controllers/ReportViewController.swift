@@ -36,9 +36,7 @@ class ReportViewController: UIViewController {
     
     let reportID = UUID().uuidString
     let db = Firestore.firestore()
-    
-    let today = Date()
-    let dateFormatter = DateFormatter()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,10 +128,6 @@ class ReportViewController: UIViewController {
             print("image is nil")
         }
         
-//        guard let imageData = imageSelected.jpegData(compressionQuality: 0.5) else {
-//            return
-//        }
-        
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
@@ -141,8 +135,8 @@ class ReportViewController: UIViewController {
         if selectedIssue == "Other" {
             self.selectedIssue = self.alternativeIssueTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         }
-
-        if selectedImageView.image != nil {
+        
+        if selectedImageView.image != nil && descriptionTextField.text != nil && selectedIssue != nil {
             let storageRef = Storage.storage().reference(forURL: "gs://rentalhub-82cfc.appspot.com")
             let reportRef = storageRef.child("reports").child("users").child(Auth.auth().currentUser!.uid).child(reportID)
             
@@ -159,8 +153,16 @@ class ReportViewController: UIViewController {
                     }
                 })
             })
-        } else {
+        }
+        else if selectedImageView.image == nil && descriptionTextField.text != nil && selectedIssue != nil{
             self.uploadDatabaseInfo(downloadStringURL: "nil")
+        }
+        else {
+            let alert = UIAlertController(title: "Report unsuccessful!", message: "Please ensure all fields are filled in before submitting.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            
+            self.present(alert, animated: true)
         }
 
         let alert = UIAlertController(title: "Report logged successfully!", message: "View your report receipt in the 'Documents tab.", preferredStyle: .alert)
@@ -174,10 +176,12 @@ class ReportViewController: UIViewController {
     //upload report data to database
     func uploadDatabaseInfo(downloadStringURL: String) {
         
-        dateFormatter.dateStyle = .short
-        let date = dateFormatter.string(from: today)
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy"
+        let formattedDate = dateFormatter.string(from: today)
         
-        db.collection("reports").addDocument(data: ["Property": "16 Cromwell Road", "Issue": selectedIssue!, "Description":  descriptionTextField.text!, "Date": date, "UserID":Auth.auth().currentUser!.uid, "uid": reportID, "ImageURL": downloadStringURL])
+        db.collection("reports").addDocument(data: ["Property": "16 Cromwell Road", "Issue": selectedIssue!, "Description":  descriptionTextField.text!, "Date": formattedDate, "UserID":Auth.auth().currentUser!.uid, "uid": reportID, "ImageURL": downloadStringURL])
         { err in
             if let err = err {
                 print("Error writing document: \(err)")

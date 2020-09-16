@@ -1,2 +1,2 @@
 # RentalHub
-# RentalHub
+This is final year university project (awarded 1st class hons) and my most thorough example of using git throughout project development. It is an iOS app integrated with Google Firebase and making use of Apple biometric functionality (Touch/Face ID) to create an interface for rental tennants and landlords to digitally share and biometrical sign documents, submit reports and share images with each other. 
